@@ -102,10 +102,10 @@ Small post-rerank prior: statute > regulation > guidance > notices.
 
 | config | accuracy | residual halluc. | latency |
 |---|---|---|---|
-| no retrieval | 0.192 | 1.000 | 15.7 s |
-| simple retrieval | 0.479 | **0.000** | 45.3 s |
-| **full, no decomposition** | **0.575** | 0.306 | 38.1 s |
-| full | 0.452 | 0.333 | 67.8 s |
+| no retrieval | 0.205 | 1.000 | 7.3 s |
+| simple retrieval | 0.452 | **0.000** | 38.8 s |
+| **full, no decomposition** | **0.562** | 0.314 | 49.7 s |
+| full | 0.452 | 0.292 | 121.5 s* |
 
 **Grounding beats memory 3x.** Residual hallucination of 1.000 for the baseline means
 every decisive verdict it gave was ungrounded. That is what answering from memory means.
@@ -114,10 +114,10 @@ every decisive verdict it gave was ungrounded. That is what answering from memor
 
 | | accuracy |
 |---|---|
-| full, no decomposition | **0.575** |
+| full, no decomposition | **0.562** |
 | full, decomposition on | 0.452 |
 
-**-12.3 points, and nearly double the latency.**
+**-11.0 points, and nearly double the latency.**
 
 Mechanism: an 8B model splits on clause boundaries into fragments that are not checkable
 assertions. Retrieval on a fragment returns nothing. One weak fragment propagates to the
@@ -129,8 +129,8 @@ It looks exactly like a retrieval failure. It is not one.
 
 The **most faithful** configuration is not the **most accurate** one.
 
-- `simple_retrieval`: residual hallucination 0.000, quote fidelity 1.000, accuracy 0.479
-- `full_no_decompose`: accuracy 0.575, residual hallucination 0.306
+- `simple_retrieval`: residual hallucination 0.000, quote fidelity 1.000, accuracy 0.452
+- `full_no_decompose`: accuracy 0.562, residual hallucination 0.314
 
 More trustworthy, less useful. Retrieving harder surfaces passages that are topically
 close but not on point, and the model quotes them.
@@ -176,12 +176,12 @@ principled abstention from a JSON key mismatch.**
 
 ## Conclusion
 
-Grounding works, and the measurement says so: **0.192 to 0.575**, residual hallucination
-from 1.000 to 0.306.
+Grounding works, and the measurement says so: **0.205 to 0.562**, residual hallucination
+from 1.000 to 0.314.
 
 Two results cut against the design, and we report them as findings:
 
-- Decomposition costs 12 points despite being the most sophisticated stage
+- Decomposition costs 11 points despite being the most sophisticated stage
 - The most faithful configuration is not the most accurate one
 
 An answer is only worth as much as the evidence behind it. That applies to ours too.

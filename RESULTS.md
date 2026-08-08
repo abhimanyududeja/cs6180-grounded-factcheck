@@ -8,10 +8,15 @@ API cost: zero. Raw per-run output is in `reports/`.
 
 | config | accuracy | citation prec. | quote fidelity | residual halluc. | detected | latency |
 |---|---|---|---|---|---|---|
-| `no_retrieval` | 0.192 | 0.000 | 0.000 | 1.000 | 1.000 | 15.7 s |
-| `simple_retrieval` | 0.479 | 0.508 | **1.000** | **0.000** | 0.000 | 45.3 s |
-| **`full_no_decompose`** | **0.575** | 0.603 | 0.815 | 0.306 | 0.306 | 38.1 s |
-| `full` | 0.452 | **0.635** | 0.801 | 0.333 | 0.333 | 67.8 s |
+| `no_retrieval` | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
+| `simple_retrieval` | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
+| **`full_no_decompose`** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
+| `full` | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
+
+\* `full`'s latency is not comparable to the other rows: the retrieval ablation was
+run on the same machine while it was in progress. Its per-claim cost is roughly
+double `full_no_decompose`, which is the figure to quote.
+
 
 By domain, best configuration: immigration 32/56, tax 10/17.
 
@@ -36,12 +41,12 @@ than a paragraph, and a document-level label is satisfied by any chunk of a
 
 ## What this supports
 
-**Grounding beats parametric memory.** 0.192 to 0.575 accuracy, three times better.
+**Grounding beats parametric memory.** 0.205 to 0.562 accuracy, nearly three times better.
 The no-retrieval baseline's residual hallucination rate of 1.000 means every decisive
 verdict it produced was ungrounded.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-9.6 points while being faster, because the abstention gate skips the LLM call when
+11.0 points while being faster, because the abstention gate skips the LLM call when
 nothing scores well. Each stage is independently justified by the ablation above.
 
 **The tax corpus integrated cleanly.** Tax scores 10/17 against immigration's 32/56 in
@@ -50,8 +55,8 @@ numbers essentially unchanged.
 
 ## What this does NOT support
 
-**Decomposition does not pay for itself at this model size.** Enabling it costs 12.3
-points, 0.575 to 0.452, and nearly doubles latency. At n=73 one verdict is 1.4 points,
+**Decomposition does not pay for itself at this model size.** Enabling it costs 11.0
+points, 0.562 to 0.452, and nearly doubles latency. At n=73 one verdict is 1.4 points,
 so that gap is roughly nine claims and outside noise. See REPORT.md section 7 for the
 mechanism.
 

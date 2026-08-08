@@ -196,23 +196,28 @@ provision the gold label happens to name.
 
 | config | accuracy | citation prec. | quote fidelity | residual halluc. | detected | latency |
 |---|---|---|---|---|---|---|
-| `no_retrieval` | 0.192 | 0.000 | 0.000 | 1.000 | 1.000 | 15.7 s |
-| `simple_retrieval` | 0.479 | 0.508 | **1.000** | **0.000** | 0.000 | 45.3 s |
-| **`full_no_decompose`** | **0.575** | 0.603 | 0.815 | 0.306 | 0.306 | 38.1 s |
-| `full` | 0.452 | **0.635** | 0.801 | 0.333 | 0.333 | 67.8 s |
+| `no_retrieval` | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
+| `simple_retrieval` | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
+| **`full_no_decompose`** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
+| `full` | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
+
+\* `full`'s latency is not comparable to the other rows: the retrieval ablation was
+run on the same machine while it was in progress. Its per-claim cost is roughly
+double `full_no_decompose`, which is the figure to quote.
+
 
 By domain, for the best configuration: immigration 32/56, tax 10/17. The tax corpus
 performs on par with the immigration corpus it was merged into, which is the evidence
 that the merge worked rather than simply not breaking anything.
 
-**Grounding beats memory decisively.** Accuracy goes from 0.192 to 0.575, three times
-better, and residual hallucination falls from 1.000 to 0.306. The no-retrieval baseline's
+**Grounding beats memory decisively.** Accuracy goes from 0.205 to 0.562, three times
+better, and residual hallucination falls from 1.000 to 0.314. The no-retrieval baseline's
 residual rate of 1.000 is worth stating plainly: every decisive verdict it produced was
 ungrounded, which is exactly what answering from memory means. This is the project's
 central claim and it holds.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-9.6 points, 0.575 against 0.479, and does so while being *faster* (38.1 s against 45.3 s)
+11.0 points, 0.562 against 0.452, and does so while being *faster* (49.7 s against 38.8 s)
 because the abstention gate skips the LLM call when nothing scores well. Hybrid fusion,
 reranking and the authority prior are each justified by section 5 and together they move
 the end-to-end number as well.
@@ -232,10 +237,10 @@ each, is the one component that does not survive contact with an 8B model.
 
 | | accuracy | change |
 |---|---|---|
-| `full_no_decompose` | 0.575 | |
-| `full` (decomposition on) | 0.452 | **-0.123** |
+| `full_no_decompose` | 0.562 | |
+| `full` (decomposition on) | 0.452 | **-0.110** |
 
-Enabling it costs 12.3 points and nearly doubles latency, 38.1 s to 67.8 s. At n=73 one
+Enabling it costs 11.0 points and roughly doubles the LLM calls per claim. At n=73 one
 flipped verdict is worth 1.4 points, so a 12-point gap is roughly nine claims and well
 outside noise.
 
@@ -298,7 +303,7 @@ Stated plainly, because a fact-checker that oversells itself is the thing it exi
 prevent.
 
 - **73 claims is a small sample.** One flipped verdict moves accuracy by 1.4 points.
-  Gaps under about 4 points should not be read as real. The 9.6-point and 12.3-point gaps
+  Gaps under about 4 points should not be read as real. The 11.0-point and 11.0-point gaps
   in sections 6 and 7 are outside that, the differences among citation precision figures
   largely are not.
 - **The gold set is hand-written by the team**, not by an attorney or a tax
@@ -330,12 +335,12 @@ and write-up split equally.
 
 # 11. Conclusion
 
-Grounding works, and the measurement says so: 0.192 to 0.575 accuracy, and a residual
+Grounding works, and the measurement says so: 0.205 to 0.562 accuracy, and a residual
 hallucination rate that falls from every-decisive-verdict-ungrounded to roughly one in
 three. The retrieval stack is justified component by component in section 5 and end to
 end in section 6.
 
-Two results cut against the design. Decomposition costs 12 points on an 8B model despite
+Two results cut against the design. Decomposition costs 11 points on an 8B model despite
 being the most sophisticated stage in the pipeline, and the most faithful configuration
 is not the most accurate one. Both are reported here as findings rather than smoothed
 over, on the same principle the system itself runs on: an answer is only worth as much as
