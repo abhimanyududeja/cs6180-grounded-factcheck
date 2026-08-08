@@ -30,7 +30,12 @@ from dataclasses import dataclass, field
 
 from .retrieve import RetrievalResult
 
-TAG_RE = re.compile(r"\[(S\d+)\]")
+# The prompt asks for [S1]. Models routinely emit **S1**, (S1) or a bare S1
+# instead, and a stricter pattern scored those answers as having zero cited
+# sentences - grading a correctly grounded answer PARTIAL for a formatting
+# difference. Match the label wherever it appears; the tag still has to resolve
+# to a retrieved chunk to count as valid.
+TAG_RE = re.compile(r"\b(S\d+)\b")
 
 
 def normalize_for_match(text: str) -> str:

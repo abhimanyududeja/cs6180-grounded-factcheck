@@ -147,7 +147,12 @@ with st.sidebar:
     st.divider()
     rerank = st.checkbox("Cross-encoder reranking", value=True,
                          help="Turn off to see how much reranking contributes.")
-    decompose = st.checkbox("Decompose compound claims", value=True)
+    decompose = st.checkbox(
+        "Decompose compound claims", value=False,
+        help="Off by default: on a local 8B model decomposition cost 12.3 points of "
+             "accuracy (0.575 -> 0.452) in our evaluation, because weak sub-claims "
+             "cascade into a blanket NOT_ADDRESSED. Turn it on to see that effect.",
+    )
     k = st.slider("Passages retrieved", 3, 15, cfg.get_path("retrieval.final_k", 8))
     picked = st.multiselect(
         "Restrict to authorities", list(SOURCE_LABEL),

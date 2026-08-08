@@ -83,7 +83,14 @@ settles every competing value for the same thing.
 
 ## Citations
 - Cite with the bracket tags exactly as given: [S1], [S2], ...
-- EVERY sentence in your explanation must carry at least one tag.
+- EVERY sentence in your explanation must carry at least one tag, written in square \
+brackets like [S1]. A sentence with no tag counts as unsupported.
+- Quote EXACTLY, copying the characters from the source. Do not reorder, reword, \
+re-punctuate or tidy a quote. A quote that does not appear verbatim is treated as \
+fabricated, which is the most damaging error this system can make.
+- Cite ONLY sources you can quote verbatim. Do not add a source as extra corroboration \
+if you cannot copy an exact span from it: one solid citation beats two where the second \
+cannot be checked.
 - For each source you rely on, supply an EXACT quote copied character-for-character \
 from that source. Do not paraphrase inside quotes, do not fix typos, do not add \
 ellipses in the middle. Quotes are checked automatically against the source text \

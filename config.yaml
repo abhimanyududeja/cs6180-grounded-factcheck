@@ -113,7 +113,11 @@ llm:
   max_output_tokens: 2000
 
 factcheck:
-  decompose: true            # split a claim into atomic sub-claims first
+  # Measured at 0.575 without and 0.452 with, on qwen3:8b over 73 claims, so it is
+  # off by default. It presumes the model can both split a claim well and resolve
+  # each piece alone; an 8B model does neither reliably. Worth re-testing on a
+  # larger model, where it may well pay for itself.
+  decompose: false           # split a claim into atomic sub-claims first
   max_subclaims: 6
   # If the best reranked chunk scores below this, refuse rather than guess.
   abstain_threshold: -6.0
