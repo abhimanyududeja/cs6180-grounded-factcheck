@@ -1,0 +1,23 @@
+# --- core ---
+requests>=2.32
+lxml>=5.2
+beautifulsoup4>=4.12
+python-dotenv>=1.0
+PyYAML>=6.0
+tqdm>=4.66
+numpy>=1.26
+pandas>=2.2
+
+# --- LLM ---
+openai>=1.40
+
+# --- retrieval ---
+rank-bm25>=0.2.2
+faiss-cpu>=1.8.0
+sentence-transformers>=3.0
+torch>=2.2
+
+# --- app + eval ---
+streamlit>=1.36
+matplotlib>=3.8
+truststore>=0.9

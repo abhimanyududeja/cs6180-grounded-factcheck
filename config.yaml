@@ -1,0 +1,121 @@
+# ============================================================================
+# FOGA — Grounded RAG Fact-Checker for US Immigration Law
+# Central configuration. Every script reads this file.
+# ============================================================================
+
+project:
+  name: "FOGA Immigration Fact-Checker"
+  # Everything the system says must trace back to a chunk from one of these
+  # authorities. Ordered by legal precedence (statute > regulation > agency guidance).
+  authority_rank:
+    ina: 1        # Immigration and Nationality Act (8 U.S.C.) — statute
+    cfr: 2        # 8 CFR — binding regulation
+    fam: 3        # 9 FAM — State Dept consular guidance
+    uscis_pm: 3   # USCIS Policy Manual — agency guidance
+    fedreg: 4     # Federal Register — notices / proposed + final rules
+    irc: 1        # Internal Revenue Code (26 U.S.C.) — statute
+    irs_pub: 3    # IRS publications and form instructions — agency guidance
+
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  index: "data/index"
+  eval: "eval"
+  reports: "reports"
+
+# ----------------------------------------------------------------------------
+# Data acquisition. All sources are official government bulk endpoints or APIs.
+# ----------------------------------------------------------------------------
+sources:
+  ecfr:
+    enabled: true
+    title: 8                       # 8 CFR — Aliens and Nationality
+    api: "https://www.ecfr.gov/api/versioner/v1"
+
+  usc:
+    enabled: true
+    title: "08"                    # 8 U.S.C. — contains the INA
+    download_page: "https://uscode.house.gov/download/download.shtml"
+
+  fam:
+    enabled: true
+    volume: "09FAM"                # 9 FAM — Visas
+    tree_api: "https://fam.state.gov/api/Tree/GetTreeByVolumeId?Id={volume}"
+    base: "https://fam.state.gov"
+
+  uscis_pm:
+    enabled: true
+    sitemap: "https://www.uscis.gov/sitemap.xml"
+    # robots.txt for uscis.gov sets `Crawl-delay: 10` for all agents and does NOT
+    # disallow /policy-manual/. We honor that delay exactly. Do not lower it.
+    crawl_delay_seconds: 10
+    # `subset` limits the first run to the volumes that matter most to
+    # international students and employment-based applicants.
+    subset_volumes: [2, 6, 7]      # 2=Nonimmigrants, 6=Employment-Based, 7=Adjustment of Status
+    # Federal sites ask automated clients to identify themselves with a contact
+    # address. Whoever runs this should put their own in, via FOGA_CONTACT_EMAIL
+    # in .env — do not send requests under someone else's name.
+    user_agent: "FOGA-Academic-Research/1.0 (university coursework; {contact_email})"
+
+  irs:
+    enabled: true
+    # Stable PDF paths on irs.gov; no API key and no scraping required.
+    base: "https://www.irs.gov/pub/irs-pdf"
+
+  fedreg:
+    enabled: true
+    api: "https://www.federalregister.gov/api/v1"
+    agencies: ["u-s-citizenship-and-immigration-services", "state-department"]
+    lookback_days: 730             # 2 years of rules/notices for currency checks
+
+# ----------------------------------------------------------------------------
+# Chunking
+# ----------------------------------------------------------------------------
+chunking:
+  target_tokens: 500       # ~2000 chars; legal provisions are dense
+  overlap_tokens: 80
+  min_tokens: 40           # drop fragments smaller than this
+  # Never merge across these boundaries — a chunk must not span two statutes.
+  hard_boundary: "section"
+
+# ----------------------------------------------------------------------------
+# Retrieval
+# ----------------------------------------------------------------------------
+retrieval:
+  embed_provider: "local"                  # openai | local
+  embed_model: "text-embedding-3-small"    # $0.02 / 1M tokens
+  embed_dims: 1536
+  local_embed_model: "BAAI/bge-small-en-v1.5"   # used when embed_provider=local
+  embed_batch_size: 128
+
+  dense_k: 40              # candidates from vector search
+  sparse_k: 40             # candidates from BM25
+  rrf_k: 60                # reciprocal-rank-fusion constant
+  rerank: true
+  rerank_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  final_k: 8               # chunks handed to the generator
+
+  # Small post-rerank bonus by authority_rank, so binding law outranks guidance
+  # that restates it in more query-like language. See Retriever._authority_bonus.
+  # Set to 0.0 to ablate.
+  authority_bonus: 0.6
+
+# ----------------------------------------------------------------------------
+# Generation
+# ----------------------------------------------------------------------------
+llm:
+  provider: "ollama"                 # openai | ollama
+  model: "gpt-5.6-luna"              # cheap + current; see scripts/list_models.py
+  judge_model: "gpt-5.6-terra"       # stronger model used only by the evaluator
+  ollama_model: "qwen3:8b"           # local default; no API key required
+  ollama_host: "http://localhost:11434"
+  temperature: 0.0                   # factuality task — no sampling
+  max_output_tokens: 2000
+
+factcheck:
+  decompose: true            # split a claim into atomic sub-claims first
+  max_subclaims: 6
+  # If the best reranked chunk scores below this, refuse rather than guess.
+  abstain_threshold: -6.0
+  # Post-hoc verifier re-reads each generated sentence against its cited chunk.
+  verify_citations: true

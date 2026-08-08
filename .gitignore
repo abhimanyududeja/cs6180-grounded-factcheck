@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Corpus, cache and index: large, and rebuilt by `make download && make index`.
+data/
+# Raw evaluation dumps. The summary tables live in REPORT.md and RESULTS.md.
+reports/*.json
+
+# Never commit credentials or the contact address.
+.env
+.env.*
+!.env.example
+
+# Generated from the .md files by pandoc; regenerate rather than diff binaries.
+*.docx
+*.pptx
