@@ -353,6 +353,16 @@ prevent.
   `gpt-5.6-luna`, but not `full`, so whether decomposition pays for itself on a stronger
   model is still open. The harness supports it with a single flag; the cost is the
   constraint, not the code.
+- **The research-agent mode is unverified and unevaluated.** The demo offers a
+  tool-calling agent alongside the fact-check workflow. It retrieves and answers in
+  prose with inline citations, but it does not run the verification pass, returns no
+  verdict label, and none of the numbers in this report describe it. Its citations are
+  therefore exactly as trustworthy as an unaided model's, which is the thing the rest of
+  the system exists to fix. Observed failure: asked whether an F-1 student may work 40
+  hours per week on campus, it answered in fluent prose citing 8 CFR 214.2(f)(10)(ii),
+  the STEM OPT provision, where the on-campus hours rule is at (f)(9)(i). The workflow
+  path would have caught that; the agent path has nothing to catch it with. The demo now
+  labels the mode as unverified on screen.
 - **Not legal or tax advice.** A course artifact over public documents.
 
 # 10. Work split

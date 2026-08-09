@@ -189,6 +189,8 @@ principled abstention from a JSON key mismatch.**
 - **Prompt was revised after seeing failures on these claims**, so these are
   development numbers, not held-out.
 - **No case law**, no state tax law, snapshot corpus.
+- **The research-agent mode is unverified**, returns no verdict, and is not in any
+  number here. It cited the wrong provision on the first claim we tried.
 - **Not legal or tax advice.**
 
 ## Conclusion

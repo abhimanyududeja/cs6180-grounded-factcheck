@@ -146,6 +146,7 @@ with st.sidebar:
     cfg = load_config()
     mode = st.radio(
         "Mode", ["Fact-check (workflow)", "Research agent (tool use)", "Retrieval only"],
+        index=0,
         help=("Workflow: decompose → retrieve → verdict, one pass. Predictable and "
               "cheap.\n\nAgent: the model runs its own searches and follows "
               "cross-references. Better on multi-hop questions, slower and pricier."),
@@ -220,6 +221,20 @@ if go and claim.strip():
         agent = ImmigrationAgent(index, cfg, llm=llm)
         with st.spinner("Researching…"):
             result = agent.run(claim)
+
+        # The workflow path runs every answer through verify.py, which checks each
+        # quote against the passage it is attributed to. The agent path does not:
+        # it writes prose with inline citations and nothing re-checks them. That is
+        # the one guarantee this project rests on, so the difference is stated on
+        # screen rather than left for the reader to infer from a missing badge.
+        st.warning(
+            "**Not verified.** This mode is exploratory. Unlike Fact-check, its "
+            "citations are not checked against the source text, it returns no "
+            "verdict, and it was not part of the evaluation. Treat the answer as a "
+            "research lead and open the linked provisions yourself. For a verified "
+            "verdict, switch Mode to **Fact-check (workflow)**.",
+            icon="⚠️",
+        )
         st.markdown(result.answer)
         st.divider()
         st.subheader(f"Research trace — {len(result.trace)} tool calls")
