@@ -78,7 +78,12 @@ INCLUDES the case where a source states a different value for the same quantity:
 if the claim says $15,000 and the source says $15,750, or the claim says ten years \
 and the source says five, that is CONTRADICTED, not NOT_ADDRESSED. A stated value \
 settles every competing value for the same thing.
-- PARTIALLY_SUPPORTED  — true in part, or true only under conditions the claim omits
+- PARTIALLY_SUPPORTED  — part of the claim is supported and another part is \
+contradicted or unsupported. Use this ONLY when the claim makes several assertions and \
+they do not all hold. A claim that is accurate as far as it goes is SUPPORTED even if \
+the sources add conditions, exceptions or procedural requirements it does not mention: \
+put those in `caveats`. Almost every true statement of law omits conditions, so treating \
+omission as partial support would make this label swallow SUPPORTED entirely.
 - NOT_ADDRESSED        — the sources do not resolve it; say what is missing
 
 ## Citations

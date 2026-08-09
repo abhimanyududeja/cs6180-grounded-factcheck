@@ -267,7 +267,10 @@ if go and claim.strip():
 
         verdict_banner(result.verdict, result.confidence)
         if result.summary:
-            st.markdown(f"### {result.summary}")
+            # Not a markdown heading: Streamlit anchors every heading, and the CSS
+            # that hides those does not reach one rendered inside st.markdown. An
+            # anchor beside a verdict summary reads like a link to the source.
+            st.subheader(result.summary, anchor=False)
         st.markdown(result.explanation)
 
         if result.caveats:

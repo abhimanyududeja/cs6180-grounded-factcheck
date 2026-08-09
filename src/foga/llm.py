@@ -185,6 +185,13 @@ class LLM:
         if tools:
             kwargs["tools"] = tools
             kwargs["tool_choice"] = "auto"
+            # Reasoning models default to a non-zero reasoning_effort, and
+            # /v1/chat/completions rejects that combined with function tools. The
+            # API's own advice is to set it to "none". It is not otherwise in
+            # kwargs, so the retry loop below cannot recover by dropping it: the
+            # parameter has to be added, not removed.
+            if "reasoning_effort" not in self._unsupported:
+                kwargs["reasoning_effort"] = "none"
 
         for attempt in range(5):
             try:
