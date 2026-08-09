@@ -88,6 +88,36 @@ def _strip_think(text: str) -> str:
     return cleaned
 
 
+def _ollama_messages(msgs: list[dict]) -> list[dict]:
+    """Convert assistant tool-call arguments back to objects for Ollama.
+
+    Tool-call arguments are a JSON *string* in OpenAI's schema and an *object* in
+    Ollama's. The agent loop is written against OpenAI's shape, so a call normalized
+    on the way in has to be converted back on the way out. Sent as a string, Ollama
+    fails to parse its own chat template and rejects the request with a 400 whose
+    message ("Value looks like object, but can't find closing '}' symbol") points at
+    JSON rather than at the round-trip that caused it.
+    """
+    out = []
+    for m in msgs:
+        calls = m.get("tool_calls")
+        if not calls:
+            out.append(m)
+            continue
+        fixed = []
+        for c in calls:
+            fn = dict(c.get("function", {}))
+            args = fn.get("arguments")
+            if isinstance(args, str):
+                try:
+                    fn["arguments"] = json.loads(args or "{}")
+                except json.JSONDecodeError:
+                    fn["arguments"] = {}
+            fixed.append({**c, "function": fn})
+        out.append({**m, "tool_calls": fixed})
+    return out
+
+
 class LLM:
     """Thin, provider-agnostic chat wrapper."""
 
@@ -138,7 +168,7 @@ class LLM:
         ]
         if self.provider == "openai":
             return self._openai(msgs, json_mode=json_mode, tools=tools)
-        return self._ollama(msgs, json_mode=json_mode, schema=schema)
+        return self._ollama(msgs, json_mode=json_mode, schema=schema, tools=tools)
 
     # -- drivers ----------------------------------------------------------
 
@@ -189,7 +219,8 @@ class LLM:
         return LLMResponse(text=msg.content or "", model=self.model, usage=self.usage)
 
     def _ollama(self, msgs: list[dict], json_mode: bool,
-                schema: dict | None = None) -> LLMResponse:
+                schema: dict | None = None,
+                tools: list[dict] | None = None) -> LLMResponse | dict:
         payload: dict[str, Any] = {
             "model": self.model,
             "messages": msgs,
@@ -201,7 +232,14 @@ class LLM:
             # mechanical quote check fails on answers that were actually correct.
             "think": False,
         }
-        if schema is not None:
+        if tools:
+            payload["tools"] = tools
+            payload["messages"] = _ollama_messages(msgs)
+            # Tool calling and constrained decoding are mutually exclusive: a schema
+            # would force the model to emit an answer object when it should be
+            # emitting a tool call.
+            payload.pop("format", None)
+        if schema is not None and not tools:
             # Structured outputs: constrain decoding to the schema, not merely to
             # valid JSON. This is what stops a small model returning well-formed
             # output with entirely different keys.
@@ -213,15 +251,45 @@ class LLM:
             raise RuntimeError(
                 f"Ollama model '{self.model}' not found. Run: ollama pull {self.model}"
             )
-        r.raise_for_status()
+        if not r.ok:
+            # Ollama puts the reason in the body; raise_for_status alone reports only
+            # the status code, which makes a malformed message list impossible to debug.
+            raise RuntimeError(
+                f"Ollama {r.status_code} for model {self.model}: {r.text[:400]}"
+            )
         data = r.json()
         self.usage.add(
             data.get("prompt_eval_count", 0), data.get("eval_count", 0)
         )
+        message = data["message"]
+
+        if tools:
+            # The agent loop is written against OpenAI's message shape. Ollama
+            # returns arguments as a dict where OpenAI returns a JSON string, and
+            # omits the call id entirely, so both are normalized here rather than
+            # branching on provider inside the agent.
+            calls = []
+            for i, c in enumerate(message.get("tool_calls") or []):
+                fn = c.get("function", {})
+                args = fn.get("arguments")
+                calls.append({
+                    "id": c.get("id") or f"call_{i}",
+                    "type": "function",
+                    "function": {
+                        "name": fn.get("name"),
+                        "arguments": args if isinstance(args, str) else json.dumps(args or {}),
+                    },
+                })
+            return {
+                "role": "assistant",
+                "content": _strip_think(message.get("content") or ""),
+                "tool_calls": calls or None,
+            }
+
         # Defensive: `think: False` is ignored by models that do not support it,
         # and a stray reasoning block would otherwise be parsed as the answer.
         return LLMResponse(
-            text=_strip_think(data["message"]["content"]), model=self.model,
+            text=_strip_think(message["content"]), model=self.model,
             usage=self.usage,
         )
 

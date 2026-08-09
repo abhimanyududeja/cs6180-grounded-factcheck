@@ -228,11 +228,12 @@ if go and claim.strip():
         # the one guarantee this project rests on, so the difference is stated on
         # screen rather than left for the reader to infer from a missing badge.
         st.warning(
-            "**Not verified.** This mode is exploratory. Unlike Fact-check, its "
-            "citations are not checked against the source text, it returns no "
-            "verdict, and it was not part of the evaluation. Treat the answer as a "
-            "research lead and open the linked provisions yourself. For a verified "
-            "verdict, switch Mode to **Fact-check (workflow)**.",
+            "**Retrieval-backed, but not quote-verified.** The agent must search "
+            "before it answers and cites only what its searches returned, but unlike "
+            "Fact-check it does not run the mechanical quote check, returns no verdict "
+            "label, and is not covered by any number in the report. Open the linked "
+            "provisions yourself. For a verified verdict, switch Mode to "
+            "**Fact-check (workflow)**.",
             icon="⚠️",
         )
         st.markdown(result.answer)

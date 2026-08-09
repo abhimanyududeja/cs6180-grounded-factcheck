@@ -33,7 +33,7 @@ from .index import HybridIndex
 from .llm import LLM, estimate_cost
 from .retrieve import Retriever
 
-AGENT_SYSTEM = """You are a research agent for US immigration law, working for \
+AGENT_SYSTEM = """You are a research agent for US immigration and federal tax law, working for \
 international students and foreign workers.
 
 You have tools that search an indexed corpus of the INA (8 U.S.C.), 8 CFR, 9 FAM, \
@@ -50,7 +50,7 @@ assuming what it says.
 the corpus does not cover.
 
 Hard rules:
-- Your own knowledge of immigration law is NOT evidence. Only tool results count.
+- Your own knowledge of immigration or tax law is NOT evidence. Only tool results count.
 - Cite every factual statement with the citation string returned by the tools \
 (e.g. "8 CFR 214.2(f)(10)(ii)"), not with an invented reference.
 - If searches come back empty or off-topic, say the corpus does not address it. \
@@ -65,7 +65,9 @@ TOOLS = [
         "function": {
             "name": "search_corpus",
             "description": (
-                "Search the immigration law corpus. Use the vocabulary the law "
+                "Search the corpus of US immigration law (INA, 8 CFR, 9 FAM, USCIS "
+                "Policy Manual) and federal tax guidance (IRS Publications 17, 501, "
+                "519, 970 and the Form 1040 instructions). Use the vocabulary the law "
                 "uses. Returns passages with citations and links."
             ),
             "parameters": {
@@ -75,11 +77,11 @@ TOOLS = [
                     "sources": {
                         "type": "array",
                         "items": {"type": "string",
-                                  "enum": ["ina", "cfr", "fam", "uscis_pm", "fedreg"]},
+                                  "enum": ["ina", "cfr", "fam", "uscis_pm", "fedreg", "irs_pub"]},
                         "description": (
                             "Optional filter. ina=statute, cfr=regulation, "
                             "fam=State Dept consular guidance, "
-                            "uscis_pm=USCIS Policy Manual, fedreg=recent rules."
+                            "uscis_pm=USCIS Policy Manual, fedreg=recent rules, irs_pub=IRS publications and form instructions (tax). Omit this to search everything."
                         ),
                     },
                     "k": {"type": "integer", "description": "How many passages (default 6)."},
@@ -162,6 +164,48 @@ class AgentResult:
             "citations": self.citations,
             "stats": self.stats,
         }
+
+
+def _trim_tool_result(result, budget: int = 12000) -> str:
+    """Serialize a tool result to at most `budget` characters of *valid* JSON.
+
+    Slicing the serialized string instead, as this previously did, cuts through the
+    middle of an object and produces text that is no longer JSON. Ollama parses tool
+    content when it renders the chat template and rejects the whole request with a
+    400, so an oversized result took down the conversation rather than being
+    shortened. Trim the passages first, then serialize.
+    """
+    passages = result.get("results") if isinstance(result, dict) else None
+    if not isinstance(passages, list):
+        out = json.dumps(result)
+        return out if len(out) <= budget else json.dumps(
+            {"note": "result too large to include", "n_results": result.get("n_results")}
+            if isinstance(result, dict) else {"note": "result too large to include"}
+        )
+
+    trimmed = dict(result)
+    per_passage = 1200
+    while per_passage >= 200:
+        trimmed["results"] = [
+            {**p, "text": (p.get("text") or "")[:per_passage]} for p in passages
+        ]
+        out = json.dumps(trimmed)
+        if len(out) <= budget:
+            return out
+        per_passage //= 2
+
+    # Still too large: drop passages from the tail, keeping the best-ranked ones.
+    keep = len(passages)
+    while keep > 1:
+        keep -= 1
+        trimmed["results"] = [
+            {**p, "text": (p.get("text") or "")[:200]} for p in passages[:keep]
+        ]
+        trimmed["truncated"] = f"showing {keep} of {len(passages)} passages"
+        out = json.dumps(trimmed)
+        if len(out) <= budget:
+            return out
+    return json.dumps({"n_results": len(passages), "note": "results too large to include"})
 
 
 class ImmigrationAgent:
@@ -255,6 +299,22 @@ class ImmigrationAgent:
             messages.append({k: v for k, v in msg.items() if v is not None})
             calls = msg.get("tool_calls") or []
             if not calls:
+                # A smaller model will often answer straight from memory rather than
+                # search. Accepting that would make this mode a parametric-memory
+                # baseline wearing a research agent's clothes, which is the failure
+                # the whole project exists to prevent. Refuse the first ungrounded
+                # answer and require at least one retrieval.
+                if not trace:
+                    messages.append({
+                        "role": "user",
+                        "content": (
+                            "You answered without searching. You have no reliable "
+                            "knowledge of this corpus and must not answer from memory. "
+                            "Call search_corpus now with the terms the law would use, "
+                            "then answer only from what it returns."
+                        ),
+                    })
+                    continue
                 answer = msg.get("content") or ""
                 return self._finish(question, answer, trace, t0)
 
@@ -282,7 +342,7 @@ class ImmigrationAgent:
                 messages.append({
                     "role": "tool",
                     "tool_call_id": call["id"],
-                    "content": json.dumps(result)[:12000],
+                    "content": _trim_tool_result(result),
                 })
 
         # Ran out of steps: ask for the best answer available from what it has.

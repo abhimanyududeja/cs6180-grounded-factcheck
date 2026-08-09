@@ -353,16 +353,20 @@ prevent.
   `gpt-5.6-luna`, but not `full`, so whether decomposition pays for itself on a stronger
   model is still open. The harness supports it with a single flag; the cost is the
   constraint, not the code.
-- **The research-agent mode is unverified and unevaluated.** The demo offers a
-  tool-calling agent alongside the fact-check workflow. It retrieves and answers in
-  prose with inline citations, but it does not run the verification pass, returns no
-  verdict label, and none of the numbers in this report describe it. Its citations are
-  therefore exactly as trustworthy as an unaided model's, which is the thing the rest of
-  the system exists to fix. Observed failure: asked whether an F-1 student may work 40
-  hours per week on campus, it answered in fluent prose citing 8 CFR 214.2(f)(10)(ii),
-  the STEM OPT provision, where the on-campus hours rule is at (f)(9)(i). The workflow
-  path would have caught that; the agent path has nothing to catch it with. The demo now
-  labels the mode as unverified on screen.
+- **The research-agent mode is retrieval-backed but not quote-verified.** The demo
+  offers a tool-calling agent alongside the fact-check workflow. It now must search
+  before answering and cites only what its searches return, but it does not run the
+  mechanical verification pass, produces no verdict label, and no number in this report
+  describes it. Getting it that far required four fixes, all invisible until the mode was
+  actually exercised: the LLM wrapper dropped the tool definitions on the local provider
+  entirely, so the agent made zero tool calls and answered from memory while presenting
+  itself as a research agent; tool-call arguments are a JSON string in one provider's
+  schema and an object in the other's, and round-tripping them unconverted made the API
+  reject the conversation; tool results were truncated by slicing serialized JSON, which
+  produced invalid JSON and the same rejection; and the tool's source filter omitted the
+  tax corpus, so no tax question could reach an IRS publication. Before these, the mode
+  answered an on-campus hours question by citing 8 CFR 214.2(f)(10)(ii), the STEM OPT
+  provision, with nothing retrieved and nothing to catch it.
 - **The abstention gate is inert at its configured threshold.** `abstain_threshold` is
   -6.0 against the cross-encoder score, but across all 73 gold claims the top-ranked
   passage never scored below -0.84, so the gate fired zero times. Every abstention in the
