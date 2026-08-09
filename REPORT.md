@@ -196,10 +196,10 @@ provision the gold label happens to name.
 
 | config | accuracy | citation prec. | quote fidelity | residual halluc. | detected | latency |
 |---|---|---|---|---|---|---|
-| `no_retrieval` | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
-| `simple_retrieval` | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
-| **`full_no_decompose`** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
-| `full` | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
+| no retrieval | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
+| simple retrieval | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
+| **full, no decomp.** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
+| full | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
 
 \* `full`'s latency is not comparable to the other rows: the retrieval ablation was
 run on the same machine while it was in progress. Its per-claim cost is roughly
@@ -241,7 +241,7 @@ each, is the one component that does not survive contact with an 8B model.
 | `full` (decomposition on) | 0.452 | **-0.110** |
 
 Enabling it costs 11.0 points and roughly doubles the LLM calls per claim. At n=73 one
-flipped verdict is worth 1.4 points, so a 12-point gap is roughly nine claims and well
+flipped verdict is worth 1.4 points, so an 11-point gap is roughly eight claims and well
 outside noise.
 
 The mechanism is visible in the per-item output. The synthesis rule is that any
@@ -254,7 +254,7 @@ propagates to the whole claim. The failure looks exactly like a retrieval failur
 not one.
 
 A guard now rejects a decomposition whose pieces are too short to be assertions and falls
-back to checking the claim whole, which removed the worst of it. The residual 12-point
+back to checking the claim whole, which removed the worst of it. The residual 11-point
 gap is decomposition working as designed on splits that pass the guard, and it is still
 a net loss at this model size.
 

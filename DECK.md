@@ -105,7 +105,10 @@ Small post-rerank prior: statute > regulation > guidance > notices.
 | no retrieval | 0.205 | 1.000 | 7.3 s |
 | simple retrieval | 0.452 | **0.000** | 38.8 s |
 | **full, no decomposition** | **0.562** | 0.314 | 49.7 s |
-| full | 0.452 | 0.292 | 121.5 s* |
+| full | 0.452 | 0.292 | 121.5 s\* |
+
+\* `full` ran while the retrieval ablation shared the machine, so its latency is not
+comparable. Its real per-claim cost is roughly double the row above.
 
 **Grounding beats memory 3x.** Residual hallucination of 1.000 for the baseline means
 every decisive verdict it gave was ungrounded. That is what answering from memory means.
