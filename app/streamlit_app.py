@@ -149,15 +149,15 @@ with st.sidebar:
         index=0,
         help=("Workflow: decompose → retrieve → verdict, one pass. Predictable and "
               "cheap.\n\nAgent: the model runs its own searches and follows "
-              "cross-references. Better on multi-hop questions, slower and pricier."),
+              "cross-references. Better on multi-hop questions, and slower."),
     )
-    provider = st.selectbox("LLM provider", ["openai", "ollama"],
-                            index=0 if cfg.get_path("llm.provider") == "openai" else 1)
-    model = st.text_input(
-        "Model",
-        value=(cfg.get_path("llm.model") if provider == "openai"
-               else cfg.get_path("llm.ollama_model")),
-    )
+    # The demo is local-only: no API key, no per-query cost, nothing leaving the
+    # machine. The OpenAI driver is still in llm.py and reachable from the
+    # evaluation harness with --provider openai, which is what produced the
+    # frontier comparison in the report; it is simply not offered here.
+    provider = "ollama"
+    model = st.text_input("Model", value=cfg.get_path("llm.ollama_model"))
+    st.caption("Runs locally through Ollama. No API key, no per-query cost.")
     st.divider()
     rerank = st.checkbox("Cross-encoder reranking", value=True,
                          help="Turn off to see how much reranking contributes.")
