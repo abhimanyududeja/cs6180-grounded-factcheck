@@ -46,8 +46,13 @@ The no-retrieval baseline's residual hallucination rate of 1.000 means every dec
 verdict it produced was ungrounded.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-11.0 points while being faster, because the abstention gate skips the LLM call when
-nothing scores well. Each stage is independently justified by the ablation above.
+11.0 points, at a cost of about 11 seconds per claim for reranking and verification.
+Each stage is independently justified by the ablation above.
+
+Note that the abstention gate described in the design does not contribute: at its
+configured threshold of -6.0 it fired on zero of the 73 claims, because the top-ranked
+passage never scored below -0.84. Every abstention here is the model declining, not the
+retriever gating.
 
 **The tax corpus integrated cleanly.** Tax scores 10/17 against immigration's 32/56 in
 the best configuration, and adding 1,600 tax chunks left the immigration retrieval

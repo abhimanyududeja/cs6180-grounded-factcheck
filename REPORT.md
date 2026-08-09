@@ -44,7 +44,7 @@ status, so a single corpus supports cross-domain claims.
 claim
   |- 1. decompose   split into atomic sub-claims (ablated; see section 7)
   |- 2. retrieve    dense + BM25 -> RRF -> cross-encoder rerank -> authority prior
-  |- 3. gate        nothing scores well? -> abstain, no LLM call
+  |- 3. gate        nothing scores well? -> abstain (never triggers; see section 9)
   |- 4. generate    verdict + explanation + tagged quotes
   |- 5. verify      do the quotes appear in the cited passages? -> downgrade if not
 ```
@@ -217,8 +217,8 @@ ungrounded, which is exactly what answering from memory means. This is the proje
 central claim and it holds.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-11.0 points, 0.562 against 0.452, and does so while being *faster* (49.7 s against 38.8 s)
-because the abstention gate skips the LLM call when nothing scores well. Hybrid fusion,
+11.0 points, 0.562 against 0.452. It is slower, not faster: 49.7 s against 38.8 s per
+claim, which is the cost of reranking and verification. Hybrid fusion,
 reranking and the authority prior are each justified by section 5 and together they move
 the end-to-end number as well.
 
@@ -363,6 +363,14 @@ prevent.
   the STEM OPT provision, where the on-campus hours rule is at (f)(9)(i). The workflow
   path would have caught that; the agent path has nothing to catch it with. The demo now
   labels the mode as unverified on screen.
+- **The abstention gate is inert at its configured threshold.** `abstain_threshold` is
+  -6.0 against the cross-encoder score, but across all 73 gold claims the top-ranked
+  passage never scored below -0.84, so the gate fired zero times. Every abstention in the
+  results comes from the model deciding the evidence does not settle the claim, not from
+  the retrieval gate. The design described in section 2 is therefore present but
+  untested in practice, and the threshold needs calibrating against the observed score
+  distribution before it does anything. This does not affect any reported number, since
+  the gate never altered a verdict; it means one component earns no credit.
 - **Not legal or tax advice.** A course artifact over public documents.
 
 # 10. Work split
