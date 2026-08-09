@@ -27,7 +27,7 @@ from foga.index import HybridIndex  # noqa: E402
 from foga.llm import LLM  # noqa: E402
 from foga.retrieve import Retriever  # noqa: E402
 
-st.set_page_config(page_title="FOGA — Immigration Law Fact-Checker",
+st.set_page_config(page_title="Grounded Fact-Checker: Immigration and Tax",
                    page_icon="⚖️", layout="wide")
 
 VERDICT_STYLE = {
@@ -115,11 +115,24 @@ def render_grounding(sub) -> None:
 
 # ---------------------------------------------------------------------------
 
-st.title("⚖️ FOGA — Grounded Fact-Checker for US Immigration Law")
+
+st.markdown(
+    """
+    <style>
+    h1 > a[href^="#"], h2 > a[href^="#"], h3 > a[href^="#"],
+    h4 > a[href^="#"], h5 > a[href^="#"], h6 > a[href^="#"] { display: none !important; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.title("⚖️ Grounded Fact-Checker for U.S. Immigration and Tax Law")
 st.caption(
     "Every answer is grounded in the INA (8 U.S.C.), 8 CFR, 9 FAM, the USCIS "
-    "Policy Manual and the Federal Register. Quotes are verified against the "
-    "source text automatically. **This is not legal advice.**"
+    "Policy Manual and the Federal Register on the immigration side, and IRS "
+    "Publications 17, 501, 519 and 970 plus the Form 1040 instructions on the tax "
+    "side. Quotes are verified against the source text automatically. "
+    "**This is not legal or tax advice.**"
 )
 
 try:
