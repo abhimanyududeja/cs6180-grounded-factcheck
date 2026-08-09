@@ -137,6 +137,23 @@ close but not on point, and the model quotes them.
 
 Which trade to take depends on whether a wrong answer or a missing answer is worse.
 
+## Local vs frontier model
+
+Same configuration, same 73 claims, only the model changes.
+
+| | `qwen3:8b` | `gpt-5.6-luna` |
+|---|---|---|
+| accuracy | 0.562 | **0.753** |
+| citation precision | 0.603 | 0.603 |
+| quote fidelity | 0.811 | **0.991** |
+| residual hallucination | 0.314 | **0.000** |
+| latency | 49.7 s | **5.1 s** |
+
+**Citation precision is identical.** That isolates the halves: retrieval is unchanged by
+the model, so the entire 19-point gap is generation.
+
+The frontier model shipped **zero** ungrounded decisive verdicts.
+
 ## Seven silent assumptions
 
 Porting the pipeline to a local model surfaced seven places it assumed a frontier model.

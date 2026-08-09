@@ -264,6 +264,36 @@ an 8B model does neither reliably. On a frontier model it may well pay for itsel
 is a comparison this project has the harness to run but did not, because running it costs
 money and the local path was the design constraint.
 
+## 7.1 The same configuration on a frontier model
+
+`full_no_decompose`, unchanged, run against `gpt-5.6-luna` over the same 73 claims:
+
+| | `qwen3:8b` (local) | `gpt-5.6-luna` |
+|---|---|---|
+| accuracy | 0.562 | **0.753** |
+| citation precision | 0.603 | 0.603 |
+| quote fidelity | 0.811 | **0.991** |
+| residual hallucination | 0.314 | **0.000** |
+| latency per claim | 49.7 s | **5.1 s** |
+| cost | none | $4.53 |
+
+Three things stand out. Accuracy rises 19 points. Quote fidelity reaches 0.991 and the
+residual hallucination rate reaches zero, meaning every decisive verdict the frontier
+model shipped was backed by a quote that actually appears in the passage it cited. And it
+is ten times faster, because a hosted model on dedicated hardware beats an 8B model
+sharing a laptop with the retrieval stack.
+
+Citation precision is identical at 0.603, which is the useful detail. That metric depends
+on retrieving the right provision, not on the model reading it, so it isolates the two
+halves: **retrieval quality is unchanged by the model, and the entire 19-point gap comes
+from generation.** The retrieval work in section 5 stands on its own.
+
+What this does not settle is whether decomposition pays for itself on a stronger model.
+That comparison needs `full` run against the same model, and it was not run: the first
+frontier configuration cost $4.53 rather than the $0.30 the original estimate assumed, and
+decomposition roughly doubles the calls per claim. The honest position is that section 7
+measures decomposition on an 8B model only, and the frontier case remains open.
+
 # 8. Porting a frontier-model pipeline to a local model
 
 The retrieval engine was originally written and tuned against a frontier model. Running
@@ -319,9 +349,10 @@ prevent.
 - **The prompt was revised after seeing failures on these same claims.** Fixes (5), (6)
   and (7) in section 8 were developed against the gold set they are evaluated on, so the
   verdict numbers are development numbers rather than held-out ones.
-- **One configuration was not run.** The same evaluation against a frontier model would
-  isolate how much of the gap in section 7 is model capability rather than pipeline
-  design. The harness supports it with a single flag.
+- **The frontier comparison is partial.** Section 7.1 runs `full_no_decompose` against
+  `gpt-5.6-luna`, but not `full`, so whether decomposition pays for itself on a stronger
+  model is still open. The harness supports it with a single flag; the cost is the
+  constraint, not the code.
 - **Not legal or tax advice.** A course artifact over public documents.
 
 # 10. Work split

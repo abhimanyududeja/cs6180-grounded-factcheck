@@ -53,6 +53,27 @@ nothing scores well. Each stage is independently justified by the ablation above
 the best configuration, and adding 1,600 tax chunks left the immigration retrieval
 numbers essentially unchanged.
 
+## Frontier-model comparison
+
+`full_no_decompose`, unchanged, on `gpt-5.6-luna` over the same 73 claims:
+
+| | `qwen3:8b` | `gpt-5.6-luna` |
+|---|---|---|
+| accuracy | 0.562 | **0.753** |
+| citation precision | 0.603 | 0.603 |
+| quote fidelity | 0.811 | **0.991** |
+| residual hallucination | 0.314 | **0.000** |
+| latency | 49.7 s | **5.1 s** |
+| cost | none | $4.53 |
+
+Citation precision is identical, which separates the two halves cleanly: retrieval is
+unaffected by the model, so the whole 19-point accuracy gap is generation. The frontier
+model also shipped zero ungrounded decisive verdicts.
+
+`full` was not run on the frontier model. The one configuration above cost $4.53 against
+a $0.30 estimate, and decomposition roughly doubles the calls, so whether decomposition
+pays for itself on a stronger model remains open.
+
 ## What this does NOT support
 
 **Decomposition does not pay for itself at this model size.** Enabling it costs 11.0
