@@ -163,9 +163,14 @@ with st.sidebar:
                          help="Turn off to see how much reranking contributes.")
     decompose = st.checkbox(
         "Decompose compound claims", value=False,
-        help="Off by default: on a local 8B model decomposition cost 12.3 points of "
-             "accuracy (0.575 -> 0.452) in our evaluation, because weak sub-claims "
-             "cascade into a blanket NOT_ADDRESSED. Turn it on to see that effect.",
+        # Renaming the key discards any value a browser session cached from before
+        # this default flipped, which otherwise silently keeps the worse setting.
+        key="decompose_off_by_default",
+        help="Off by default: on a local 8B model decomposition cost 11.0 points of "
+             "accuracy (0.562 -> 0.452) in our evaluation. It splits a claim into "
+             "pieces, each piece comes back NOT_ADDRESSED, and the synthesis rule "
+             "averages them into PARTIALLY_SUPPORTED instead of noticing the "
+             "contradiction. Turn it on to see that effect.",
     )
     k = st.slider("Passages retrieved", 3, 15, cfg.get_path("retrieval.final_k", 8))
     picked = st.multiselect(
