@@ -15,3 +15,6 @@ reports/*.json
 # Generated from the .md files by pandoc; regenerate rather than diff binaries.
 *.docx
 *.pptx
+
+# Presentation notes: ours, not for the public repo.
+DEMO_SCRIPT.md
