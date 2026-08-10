@@ -14,6 +14,7 @@ text on screen next to the answer, rather than hiding them behind the prose.
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -260,9 +261,22 @@ with st.sidebar:
     # machine. The OpenAI driver is still in llm.py and reachable from the
     # evaluation harness with --provider openai, which is what produced the
     # frontier comparison in the report; it is simply not offered here.
-    provider = "ollama"
-    model = st.text_input("Model", value=cfg.get_path("llm.ollama_model"))
-    st.caption("Runs locally through Ollama. No API key, no per-query cost.")
+    # Local by default. A hosted deployment sets FOGA_LLM_PROVIDER=openai because
+    # an 8B model cannot be served from a small container; retrieval and
+    # verification are unchanged either way. There is deliberately no UI control
+    # for this: a dropdown would let a demo query bill someone's API account.
+    provider = os.environ.get("FOGA_LLM_PROVIDER", "ollama")
+    if provider == "openai":
+        model = st.text_input(
+            "Model", value=os.environ.get("FOGA_LLM_MODEL", cfg.get_path("llm.model")))
+        st.caption(
+            "Hosted build: generation runs on the OpenAI API. Retrieval, reranking and "
+            "verification are unchanged. The reported numbers come from the local "
+            "qwen3:8b build; see REPORT.md section 7.1."
+        )
+    else:
+        model = st.text_input("Model", value=cfg.get_path("llm.ollama_model"))
+        st.caption("Runs locally through Ollama. No API key, no per-query cost.")
     st.divider()
     rerank = st.checkbox("Cross-encoder reranking", value=True,
                          help="Turn off to see how much reranking contributes.")
