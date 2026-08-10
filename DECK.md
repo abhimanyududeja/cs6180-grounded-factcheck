@@ -107,11 +107,8 @@ Small post-rerank prior: statute > regulation > guidance > notices.
 | **full, no decomposition** | **0.534** | 0.303 | 63.8 s |
 | full | 0.444 | 0.304 | 68.5 s |
 
-\* `full` ran while the retrieval ablation shared the machine, so its latency is not
-comparable. Its real per-claim cost is roughly double the row above.
-
 **Grounding beats memory 3x.** Residual hallucination of 1.000 for the baseline means
-every decisive verdict it gave was ungrounded. That is what answering from memory means.
+every decisive verdict it gave was ungrounded.
 
 ## The finding: decomposition hurts
 

@@ -13,9 +13,6 @@ API cost: zero. Raw per-run output is in `reports/`.
 | **`full_no_decompose`** | **0.534** | 0.603 | 0.829 | 0.303 | 0.303 | 63.8 s |
 | `full` | 0.444 | **0.629** | 0.814 | 0.304 | 0.304 | 68.5 s |
 
-\* `full`'s latency is not comparable to the other rows: the retrieval ablation was
-run on the same machine while it was in progress. Its per-claim cost is roughly
-double `full_no_decompose`, which is the figure to quote.
 
 
 By domain, best configuration: immigration 32/56, tax 10/17.

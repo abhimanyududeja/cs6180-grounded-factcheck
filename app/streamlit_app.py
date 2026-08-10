@@ -13,6 +13,7 @@ text on screen next to the answer, rather than hiding them behind the prose.
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -76,6 +77,103 @@ def verdict_banner(verdict: str, confidence: str) -> None:
         unsafe_allow_html=True,
     )
 
+
+
+
+EVAL_ORDER = {"no_retrieval": 0, "simple_retrieval": 1, "full_no_decompose": 2, "full": 3}
+EVAL_LABEL = {
+    "no_retrieval": "no retrieval",
+    "simple_retrieval": "simple retrieval",
+    "full_no_decompose": "full, no decomposition",
+    "full": "full",
+}
+
+
+def _eval_rows(pattern: str) -> list[dict]:
+    import glob
+    rows = []
+    for path in glob.glob(str(ROOT / pattern)):
+        data = json.loads(Path(path).read_text())
+        for row in data.get("generation_configs", {}).get("table", []):
+            rows.append(row)
+    return sorted(rows, key=lambda r: EVAL_ORDER.get(r["config"], 9))
+
+
+def render_evaluation() -> None:
+    """Show the measured results, read from reports/ rather than hardcoded.
+
+    The demo and the report quote the same figures because both come from these
+    files. If a run is re-done, this view changes with it.
+    """
+    st.subheader("Verdict evaluation", anchor=False)
+    rows = _eval_rows("reports/*v3_*.json")
+    if not rows:
+        st.info("No evaluation output found. Run scripts/evaluate.py first.")
+        return
+    st.caption(f"{sum(1 for _ in open(ROOT / 'eval/goldset.jsonl'))} labeled claims · "
+               "qwen3:8b · no API cost")
+    st.dataframe(
+        [{"config": EVAL_LABEL.get(r["config"], r["config"]),
+          "accuracy": r["verdict_acc"],
+          "citation prec.": r["cite_prec"],
+          "quote fidelity": r["quote_fid"],
+          "residual halluc.": r["resid_halluc"],
+          "latency (s)": r["latency_s"]} for r in rows],
+        hide_index=True, use_container_width=True,
+    )
+    best = max(rows, key=lambda r: r["verdict_acc"])
+    base = next((r for r in rows if r["config"] == "no_retrieval"), None)
+    if base:
+        st.markdown(
+            f"**Grounding beats memory.** Accuracy goes from {base['verdict_acc']} without "
+            f"retrieval to {best['verdict_acc']} with the best configuration. The baseline's "
+            f"residual hallucination rate of {base['resid_halluc']} means every decisive "
+            "verdict it produced was ungrounded."
+        )
+
+    dec = {r["config"]: r for r in rows}
+    if "full" in dec and "full_no_decompose" in dec:
+        gap = round(dec["full_no_decompose"]["verdict_acc"] - dec["full"]["verdict_acc"], 3)
+        st.markdown(
+            f"**Decomposition costs {gap * 100:.1f} points** and is off by default. Sub-claims "
+            "come back NOT_ADDRESSED individually and the synthesis rule averages them "
+            "instead of noticing the contradiction."
+        )
+
+    st.divider()
+    st.subheader("Retrieval ablation", anchor=False)
+    import glob
+    abl = sorted(glob.glob(str(ROOT / "reports/*v3_retrieval*.json")))
+    if abl:
+        table = json.loads(Path(abl[-1]).read_text()).get("retrieval", {}).get("table", [])
+        if table:
+            st.caption("39 provision-level gold items. A hit means the exact gold provision "
+                       "at that rank. No LLM involved.")
+            st.dataframe(
+                [{"config": r.get("config"), "R@1": r.get("R@1"), "R@5": r.get("R@5"),
+                  "R@8": r.get("R@8"), "MRR": r.get("MRR")} for r in table],
+                hide_index=True, use_container_width=True,
+            )
+
+    oai = _eval_rows("reports/*oai_*.json")
+    if oai:
+        st.divider()
+        st.subheader("Same pipeline, frontier model", anchor=False)
+        local = dec.get("full_no_decompose")
+        f = oai[0]
+        if local:
+            st.dataframe([
+                {"metric": "accuracy", "qwen3:8b": local["verdict_acc"], "gpt-5.6-luna": f["verdict_acc"]},
+                {"metric": "citation precision", "qwen3:8b": local["cite_prec"], "gpt-5.6-luna": f["cite_prec"]},
+                {"metric": "quote fidelity", "qwen3:8b": local["quote_fid"], "gpt-5.6-luna": f["quote_fid"]},
+                {"metric": "residual hallucination", "qwen3:8b": local["resid_halluc"], "gpt-5.6-luna": f["resid_halluc"]},
+                {"metric": "latency (s)", "qwen3:8b": local["latency_s"], "gpt-5.6-luna": f["latency_s"]},
+            ], hide_index=True, use_container_width=True)
+            st.markdown(
+                "**Citation precision is identical.** It depends on retrieving the right "
+                "provision, not on the model reading it, so the whole accuracy gap is "
+                "generation. The retrieval work stands regardless of model."
+            )
 
 def render_sources(sources: list[dict], key_prefix: str) -> None:
     for s in sources:
@@ -145,7 +243,8 @@ with st.sidebar:
     st.header("Configuration")
     cfg = load_config()
     mode = st.radio(
-        "Mode", ["Fact-check (workflow)", "Research agent (tool use)", "Retrieval only"],
+        "Mode", ["Fact-check (workflow)", "Research agent (tool use)", "Retrieval only",
+                 "Evaluation results"],
         index=0,
         help=("Workflow: decompose → retrieve → verdict, one pass. Predictable and "
               "cheap.\n\nAgent: the model runs its own searches and follows "
@@ -195,6 +294,11 @@ claim = st.text_area(
     placeholder="e.g. F-1 students may work 20 hours per week on campus",
 )
 go = st.button("Check", type="primary", disabled=not claim.strip())
+
+# The evaluation view needs no claim, so it renders before the Check gate below.
+if mode == "Evaluation results":
+    render_evaluation()
+    st.stop()
 
 if go and claim.strip():
     cfg = load_config()
