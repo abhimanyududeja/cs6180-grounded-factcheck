@@ -169,6 +169,16 @@ Three things these numbers say, including the ones that cut against the design:
 - **The research-agent mode is not quote-verified** and is excluded from every number.
 - **No case law**, no state tax law. The corpus is a snapshot as of the download date.
 
+## Team
+
+| | Area | Where it lives |
+|---|---|---|
+| **Kashish Rahulbhai Khatri** | Retrieval | Corpus, chunking, embeddings and the vector store: `src/foga/sources/`, `chunk.py`, `index.py`, `retrieve.py`, and the retrieval ablation |
+| **Abhimanyu Dudeja** | Generation | Prompting, verdict logic, the verification pass and the answer-side metrics: `prompts.py`, `factcheck.py`, `verify.py` |
+| **Prasanna Adarsh Kolli** | Integration and evaluation | Labeled gold set, end-to-end pipeline, demo interface and the evaluation harness: `eval/goldset.jsonl`, `scripts/evaluate.py`, `app/streamlit_app.py` |
+
+Report, demo and write-up split equally.
+
 ## Layout
 
 ```
