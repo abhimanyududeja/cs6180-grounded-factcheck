@@ -43,6 +43,7 @@ SOURCE_LABEL = {
     "fam": "9 FAM (State Dept guidance)",
     "uscis_pm": "USCIS Policy Manual (agency guidance)",
     "fedreg": "Federal Register (rules & notices)",
+    "irs_pub": "IRS publications (tax)",
 }
 
 EXAMPLES = [
@@ -286,6 +287,10 @@ with st.sidebar:
     for s, n in sorted(counts.items(), key=lambda kv: -kv[1]):
         st.caption(f"  {SOURCE_LABEL.get(s, s)}: {n:,}")
 
+if mode == "Evaluation results":
+    render_evaluation()
+    st.stop()
+
 example = st.selectbox("Try an example", [""] + EXAMPLES)
 claim = st.text_area(
     "Claim or question",
@@ -294,11 +299,6 @@ claim = st.text_area(
     placeholder="e.g. F-1 students may work 20 hours per week on campus",
 )
 go = st.button("Check", type="primary", disabled=not claim.strip())
-
-# The evaluation view needs no claim, so it renders before the Check gate below.
-if mode == "Evaluation results":
-    render_evaluation()
-    st.stop()
 
 if go and claim.strip():
     cfg = load_config()
