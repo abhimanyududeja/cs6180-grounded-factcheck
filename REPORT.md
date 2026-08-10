@@ -203,7 +203,7 @@ provision the gold label happens to name.
 
 
 
-By domain, for the best configuration: immigration 32/56, tax 10/17. The tax corpus
+By domain, for the best configuration: immigration 29/56, tax 10/17. The tax corpus
 performs on par with the immigration corpus it was merged into, which is the evidence
 that the merge worked rather than simply not breaking anything.
 

@@ -76,10 +76,12 @@ anything:
 .venv/bin/python scripts/show_results.py
 ```
 
-That prints every reported figure next to the file it came from. The USCIS Policy Manual fetch is
-the slow part, because USCIS publishes no bulk archive and their `robots.txt` sets a
-10-second crawl delay that the fetcher honours. Every URL is requested at most once ever
-and cached, so re-running costs nothing.
+That prints every reported figure next to the file it came from.
+
+The USCIS Policy Manual fetch is the slow part of a rebuild, because USCIS publishes no
+bulk archive and their `robots.txt` sets a 10-second crawl delay that the fetcher
+honours. Every URL is requested at most once ever and cached, so re-running costs
+nothing.
 
 Run it:
 
@@ -129,10 +131,10 @@ Full numbers and caveats in [RESULTS.md](RESULTS.md); the write-up is
 
 | config | accuracy | residual hallucination |
 |---|---|---|
-| no retrieval | 0.205 | 1.000 |
+| no retrieval | 0.164 | 1.000 |
 | simple retrieval | 0.452 | 0.000 |
-| **full, no decomposition** | **0.562** | 0.314 |
-| full | 0.452 | 0.292 |
+| **full, no decomposition** | **0.534** | 0.303 |
+| full | 0.444 | 0.304 |
 
 Retrieval ablation over the 39 provision-level gold items:
 
@@ -147,11 +149,11 @@ Retrieval ablation over the 39 provision-level gold items:
 Three things these numbers say, including the ones that cut against the design:
 
 1. **Grounding beats memory**, roughly three to one.
-2. **Decomposition costs 11 points** on an 8B model and is off by default. It splits a
+2. **Decomposition costs 9 points** on an 8B model and is off by default. It splits a
    claim into pieces, each piece comes back NOT_ADDRESSED, and the synthesis rule
    averages them instead of noticing the contradiction.
 3. **The most faithful configuration is not the most accurate one.** `simple_retrieval`
-   ships zero ungrounded verdicts but is 11 points less accurate. Retrieving harder
+   ships zero ungrounded verdicts but is 8 points less accurate. Retrieving harder
    surfaces passages that are close but not on point, and the model quotes them.
 
 ## Limitations

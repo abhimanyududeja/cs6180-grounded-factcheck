@@ -15,7 +15,7 @@ API cost: zero. Raw per-run output is in `reports/`.
 
 
 
-By domain, best configuration: immigration 32/56, tax 10/17.
+By domain, best configuration: immigration 29/56, tax 10/17.
 
 Read `residual` as the faithfulness number: verdicts still shown as decisive that failed
 the mechanical quote check. `detected` counts everything the verifier caught whether or
@@ -52,7 +52,7 @@ configured threshold of -6.0 it fired on zero of the 73 claims, because the top-
 passage never scored below -0.84. Every abstention here is the model declining, not the
 retriever gating.
 
-**The tax corpus integrated cleanly.** Tax scores 10/17 against immigration's 32/56 in
+**The tax corpus integrated cleanly.** Tax scores 10/17 against immigration's 29/56 in
 the best configuration, and adding 1,600 tax chunks left the immigration retrieval
 numbers essentially unchanged.
 
