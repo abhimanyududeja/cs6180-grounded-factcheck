@@ -8,10 +8,10 @@ API cost: zero. Raw per-run output is in `reports/`.
 
 | config | accuracy | citation prec. | quote fidelity | residual halluc. | detected | latency |
 |---|---|---|---|---|---|---|
-| `no_retrieval` | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
-| `simple_retrieval` | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
-| **`full_no_decompose`** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
-| `full` | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
+| `no_retrieval` | 0.164 | 0.000 | 0.000 | 1.000 | 1.000 | 13.7 s |
+| `simple_retrieval` | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 106.1 s |
+| **`full_no_decompose`** | **0.534** | 0.603 | 0.829 | 0.303 | 0.303 | 63.8 s |
+| `full` | 0.444 | **0.629** | 0.814 | 0.304 | 0.304 | 68.5 s |
 
 \* `full`'s latency is not comparable to the other rows: the retrieval ablation was
 run on the same machine while it was in progress. Its per-claim cost is roughly
@@ -41,12 +41,13 @@ than a paragraph, and a document-level label is satisfied by any chunk of a
 
 ## What this supports
 
-**Grounding beats parametric memory.** 0.205 to 0.562 accuracy, nearly three times better.
+**Grounding beats parametric memory.** 0.164 to 0.534 accuracy, nearly three times better.
 The no-retrieval baseline's residual hallucination rate of 1.000 means every decisive
 verdict it produced was ungrounded.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-11.0 points, at a cost of about 11 seconds per claim for reranking and verification.
+8.2 points, and is faster per claim as well (63.8 s against 106.1 s), because it sends
+fewer tokens to the model once reranking has narrowed the passage set.
 Each stage is independently justified by the ablation above.
 
 Note that the abstention gate described in the design does not contribute: at its
@@ -64,15 +65,15 @@ numbers essentially unchanged.
 
 | | `qwen3:8b` | `gpt-5.6-luna` |
 |---|---|---|
-| accuracy | 0.562 | **0.753** |
+| accuracy | 0.534 | **0.753** |
 | citation precision | 0.603 | 0.603 |
-| quote fidelity | 0.811 | **0.991** |
-| residual hallucination | 0.314 | **0.000** |
-| latency | 49.7 s | **5.1 s** |
+| quote fidelity | 0.829 | **0.991** |
+| residual hallucination | 0.303 | **0.000** |
+| latency per claim | 63.8 s | **5.1 s** |
 | cost | none | $4.53 |
 
 Citation precision is identical, which separates the two halves cleanly: retrieval is
-unaffected by the model, so the whole 19-point accuracy gap is generation. The frontier
+unaffected by the model, so the whole 22-point accuracy gap is generation. The frontier
 model also shipped zero ungrounded decisive verdicts.
 
 `full` was not run on the frontier model. The one configuration above cost $4.53 against
@@ -82,7 +83,7 @@ pays for itself on a stronger model remains open.
 ## What this does NOT support
 
 **Decomposition does not pay for itself at this model size.** Enabling it costs 11.0
-points, 0.562 to 0.452, and nearly doubles latency. At n=73 one verdict is 1.4 points,
+points, 0.534 to 0.444, and nearly doubles latency. At n=73 one verdict is 1.4 points,
 so that gap is roughly nine claims and outside noise. See REPORT.md section 7 for the
 mechanism.
 

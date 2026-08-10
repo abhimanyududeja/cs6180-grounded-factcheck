@@ -102,10 +102,10 @@ Small post-rerank prior: statute > regulation > guidance > notices.
 
 | config | accuracy | residual halluc. | latency |
 |---|---|---|---|
-| no retrieval | 0.205 | 1.000 | 7.3 s |
-| simple retrieval | 0.452 | **0.000** | 38.8 s |
-| **full, no decomposition** | **0.562** | 0.314 | 49.7 s |
-| full | 0.452 | 0.292 | 121.5 s\* |
+| no retrieval | 0.164 | 1.000 | 13.7 s |
+| simple retrieval | 0.452 | **0.000** | 106.1 s |
+| **full, no decomposition** | **0.534** | 0.303 | 63.8 s |
+| full | 0.444 | 0.304 | 68.5 s |
 
 \* `full` ran while the retrieval ablation shared the machine, so its latency is not
 comparable. Its real per-claim cost is roughly double the row above.
@@ -117,10 +117,10 @@ every decisive verdict it gave was ungrounded. That is what answering from memor
 
 | | accuracy |
 |---|---|
-| full, no decomposition | **0.562** |
-| full, decomposition on | 0.452 |
+| full, no decomposition | **0.534** |
+| full, decomposition on | 0.444 |
 
-**-11.0 points, and nearly double the latency.**
+**-9.0 points, and nearly double the latency.**
 
 Mechanism: an 8B model splits on clause boundaries into fragments that are not checkable
 assertions. Retrieval on a fragment returns nothing. One weak fragment propagates to the
@@ -133,7 +133,7 @@ It looks exactly like a retrieval failure. It is not one.
 The **most faithful** configuration is not the **most accurate** one.
 
 - `simple_retrieval`: residual hallucination 0.000, quote fidelity 1.000, accuracy 0.452
-- `full_no_decompose`: accuracy 0.562, residual hallucination 0.314
+- `full_no_decompose`: accuracy 0.534, residual hallucination 0.303
 
 More trustworthy, less useful. Retrieving harder surfaces passages that are topically
 close but not on point, and the model quotes them.
@@ -146,14 +146,14 @@ Same configuration, same 73 claims, only the model changes.
 
 | | `qwen3:8b` | `gpt-5.6-luna` |
 |---|---|---|
-| accuracy | 0.562 | **0.753** |
+| accuracy | 0.534 | **0.753** |
 | citation precision | 0.603 | 0.603 |
-| quote fidelity | 0.811 | **0.991** |
-| residual hallucination | 0.314 | **0.000** |
-| latency | 49.7 s | **5.1 s** |
+| quote fidelity | 0.829 | **0.991** |
+| residual hallucination | 0.303 | **0.000** |
+| latency per claim | 63.8 s | **5.1 s** |
 
 **Citation precision is identical.** That isolates the halves: retrieval is unchanged by
-the model, so the entire 19-point gap is generation.
+the model, so the entire 22-point gap is generation.
 
 The frontier model shipped **zero** ungrounded decisive verdicts.
 
@@ -198,12 +198,12 @@ principled abstention from a JSON key mismatch.**
 
 ## Conclusion
 
-Grounding works, and the measurement says so: **0.205 to 0.562**, residual hallucination
-from 1.000 to 0.314.
+Grounding works, and the measurement says so: **0.164 to 0.534**, residual hallucination
+from 1.000 to 0.303.
 
 Two results cut against the design, and we report them as findings:
 
-- Decomposition costs 11 points despite being the most sophisticated stage
+- Decomposition costs 9 points despite being the most sophisticated stage
 - The most faithful configuration is not the most accurate one
 
 An answer is only worth as much as the evidence behind it. That applies to ours too.

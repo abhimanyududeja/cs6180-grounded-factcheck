@@ -196,10 +196,10 @@ provision the gold label happens to name.
 
 | config | accuracy | citation prec. | quote fidelity | residual halluc. | detected | latency |
 |---|---|---|---|---|---|---|
-| no retrieval | 0.205 | 0.000 | 0.000 | 1.000 | 1.000 | 7.3 s |
-| simple retrieval | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 38.8 s |
-| **full, no decomp.** | **0.562** | 0.603 | 0.811 | 0.314 | 0.314 | 49.7 s |
-| full | 0.452 | **0.635** | 0.804 | 0.292 | 0.292 | 121.5 s* |
+| no retrieval | 0.164 | 0.000 | 0.000 | 1.000 | 1.000 | 13.7 s |
+| simple retrieval | 0.452 | 0.508 | **1.000** | **0.000** | 0.000 | 106.1 s |
+| **full, no decomp.** | **0.534** | 0.603 | 0.829 | 0.303 | 0.303 | 63.8 s |
+| full | 0.444 | **0.629** | 0.814 | 0.304 | 0.304 | 68.5 s |
 
 \* `full`'s latency is not comparable to the other rows: the retrieval ablation was
 run on the same machine while it was in progress. Its per-claim cost is roughly
@@ -210,15 +210,15 @@ By domain, for the best configuration: immigration 32/56, tax 10/17. The tax cor
 performs on par with the immigration corpus it was merged into, which is the evidence
 that the merge worked rather than simply not breaking anything.
 
-**Grounding beats memory decisively.** Accuracy goes from 0.205 to 0.562, three times
-better, and residual hallucination falls from 1.000 to 0.314. The no-retrieval baseline's
+**Grounding beats memory decisively.** Accuracy goes from 0.164 to 0.534, three times
+better, and residual hallucination falls from 1.000 to 0.303. The no-retrieval baseline's
 residual rate of 1.000 is worth stating plainly: every decisive verdict it produced was
 ungrounded, which is exactly what answering from memory means. This is the project's
 central claim and it holds.
 
 **The retrieval stack earns its cost.** `full_no_decompose` beats `simple_retrieval` by
-11.0 points, 0.562 against 0.452. It is slower, not faster: 49.7 s against 38.8 s per
-claim, which is the cost of reranking and verification. Hybrid fusion,
+8.2 points, 0.534 against 0.452, and is faster per claim as well: 63.8 s against
+106.1 s, because reranking narrows the passage set before the model sees it. Hybrid fusion,
 reranking and the authority prior are each justified by section 5 and together they move
 the end-to-end number as well.
 
@@ -237,11 +237,11 @@ each, is the one component that does not survive contact with an 8B model.
 
 | | accuracy | change |
 |---|---|---|
-| `full_no_decompose` | 0.562 | |
-| `full` (decomposition on) | 0.452 | **-0.110** |
+| `full_no_decompose` | 0.534 | |
+| `full` (decomposition on) | 0.452 | **-0.090** |
 
-Enabling it costs 11.0 points and roughly doubles the LLM calls per claim. At n=73 one
-flipped verdict is worth 1.4 points, so an 11-point gap is roughly eight claims and well
+Enabling it costs 9.0 points and roughly doubles the LLM calls per claim. At n=73 one
+flipped verdict is worth 1.4 points, so a 9-point gap is roughly seven claims and well
 outside noise.
 
 The mechanism is visible in the per-item output. The synthesis rule is that any
@@ -270,14 +270,14 @@ money and the local path was the design constraint.
 
 | | `qwen3:8b` (local) | `gpt-5.6-luna` |
 |---|---|---|
-| accuracy | 0.562 | **0.753** |
+| accuracy | 0.534 | **0.753** |
 | citation precision | 0.603 | 0.603 |
-| quote fidelity | 0.811 | **0.991** |
-| residual hallucination | 0.314 | **0.000** |
-| latency per claim | 49.7 s | **5.1 s** |
+| quote fidelity | 0.829 | **0.991** |
+| residual hallucination | 0.303 | **0.000** |
+| latency per claim | 63.8 s | **5.1 s** |
 | cost | none | $4.53 |
 
-Three things stand out. Accuracy rises 19 points. Quote fidelity reaches 0.991 and the
+Three things stand out. Accuracy rises 22 points. Quote fidelity reaches 0.991 and the
 residual hallucination rate reaches zero, meaning every decisive verdict the frontier
 model shipped was backed by a quote that actually appears in the passage it cited. And it
 is ten times faster, because a hosted model on dedicated hardware beats an 8B model
@@ -285,7 +285,7 @@ sharing a laptop with the retrieval stack.
 
 Citation precision is identical at 0.603, which is the useful detail. That metric depends
 on retrieving the right provision, not on the model reading it, so it isolates the two
-halves: **retrieval quality is unchanged by the model, and the entire 19-point gap comes
+halves: **retrieval quality is unchanged by the model, and the entire 22-point gap comes
 from generation.** The retrieval work in section 5 stands on its own.
 
 What this does not settle is whether decomposition pays for itself on a stronger model.
@@ -388,12 +388,12 @@ and write-up split equally.
 
 # 11. Conclusion
 
-Grounding works, and the measurement says so: 0.205 to 0.562 accuracy, and a residual
+Grounding works, and the measurement says so: 0.164 to 0.534 accuracy, and a residual
 hallucination rate that falls from every-decisive-verdict-ungrounded to roughly one in
 three. The retrieval stack is justified component by component in section 5 and end to
 end in section 6.
 
-Two results cut against the design. Decomposition costs 11 points on an 8B model despite
+Two results cut against the design. Decomposition costs 9 points on an 8B model despite
 being the most sophisticated stage in the pipeline, and the most faithful configuration
 is not the most accurate one. Both are reported here as findings rather than smoothed
 over, on the same principle the system itself runs on: an answer is only worth as much as
