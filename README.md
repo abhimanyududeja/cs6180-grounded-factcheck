@@ -68,7 +68,15 @@ Then build the corpus and index:
 ```
 
 `data/` is not in the repo: it is roughly 160 MB of source documents, cached pages and a
-FAISS index, all reproducible from those two commands. The USCIS Policy Manual fetch is
+FAISS index, all reproducible from those two commands. The evaluation output the report
+cites *is* committed, under `reports/`, so the numbers can be checked without rebuilding
+anything:
+
+```bash
+.venv/bin/python scripts/show_results.py
+```
+
+That prints every reported figure next to the file it came from. The USCIS Policy Manual fetch is
 the slow part, because USCIS publishes no bulk archive and their `robots.txt` sets a
 10-second crawl delay that the fetcher honours. Every URL is requested at most once ever
 and cached, so re-running costs nothing.

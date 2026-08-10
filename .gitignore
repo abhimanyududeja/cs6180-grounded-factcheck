@@ -4,12 +4,13 @@ __pycache__/
 
 # Corpus, cache and index: large, and rebuilt by `make download && make index`.
 data/
-# The prebuilt index is committed so a hosted build has something to serve: it is
-# 70 MB, and rebuilding it needs a 45-minute crawl the build step cannot do.
-!data/index/
-!data/index/*
 # Raw evaluation dumps. The summary tables live in REPORT.md and RESULTS.md.
+# Raw evaluation output. The runs the report cites are committed, since the app's
+# evaluation view reads them and every figure should be traceable to its source
+# file. Intermediate and superseded runs are not.
 reports/*.json
+!reports/*v3_*.json
+!reports/*oai_*.json
 
 # Never commit credentials or the contact address.
 .env

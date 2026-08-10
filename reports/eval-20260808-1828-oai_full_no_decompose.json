@@ -1,0 +1,2095 @@
+{
+ "timestamp": "20260808-1828",
+ "index_meta": {
+  "n_chunks": 14726,
+  "dims": 384,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "embed_provider": "local"
+ },
+ "n_gold": 73,
+ "generation_configs": {
+  "table": [
+   {
+    "config": "full_no_decompose",
+    "n": 73,
+    "verdict_acc": 0.753,
+    "verdict_score": 0.87,
+    "cite_prec": 0.603,
+    "quote_fid": 0.991,
+    "halluc_rate": 0.0,
+    "resid_halluc": 0.0,
+    "detect_halluc": 0.0,
+    "abstain_P": 1.0,
+    "abstain_R": 1.0,
+    "latency_s": 5.1,
+    "cost_usd": 4.5345
+   }
+  ],
+  "detail": {
+   "full_no_decompose": {
+    "metrics": {
+     "n": 73,
+     "verdict_acc": 0.753,
+     "verdict_score": 0.87,
+     "cite_prec": 0.603,
+     "quote_fid": 0.991,
+     "halluc_rate": 0.0,
+     "resid_halluc": 0.0,
+     "detect_halluc": 0.0,
+     "abstain_P": 1.0,
+     "abstain_R": 1.0,
+     "latency_s": 5.1,
+     "cost_usd": 4.5345
+    },
+    "per_item": [
+     {
+      "id": "f1-oncampus-hours",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-oncampus-40h",
+      "gold": "CONTRADICTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "opt-12-months",
+      "gold": "SUPPORTED",
+      "pred": "CONTRADICTED",
+      "correct": false,
+      "score": 0.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 0.667
+     },
+     {
+      "id": "stem-opt-24",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "stem-opt-36",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-grace-60",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-grace-30",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-firstyear-offcampus",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "cpt-integral",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "cpt-12-months-opt",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "GROUNDED",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-cap-65k",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-cap-85k-regular",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-max-6yr",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "GROUNDED",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-max-3yr",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-specialty-occupation",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "h1b-masters-exemption",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "b12-no-employment",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "unlawful-presence-3yr",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "unlawful-presence-10yr",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "aos-inspected-admitted",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "immediate-relative-no-cap",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "eb-preference-categories",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "natz-5-years",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "natz-10-years",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "natz-spouse-3-years",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "natz-physical-presence",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "asylum-one-year",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "asylum-no-deadline",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "j1-212e-not-universal",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "j1-212e-exists",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "l1a-7-years",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "l1b-5-years",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "l1-one-year-abroad",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-cap-gap",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-full-course",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "f1-online-limit",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "visa-vs-status",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "out-of-corpus-processing-time",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "out-of-corpus-case-law",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "out-of-corpus-foreign-law",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "GROUNDED",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "compound-opt-stem",
+      "gold": "PARTIALLY_SUPPORTED",
+      "pred": "CONTRADICTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "compound-h1b",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt01",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt02",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt03",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt04",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt05",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt06",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt07",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt08",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt09",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt10",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt11",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt12",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt13",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rt14",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri01",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri02",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri03",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri04",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri05",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri06",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri07",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "correct": false,
+      "score": 0.5,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 0.667
+     },
+     {
+      "id": "ri08",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri09",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "ri10",
+      "gold": "CONTRADICTED",
+      "pred": "CONTRADICTED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": true,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn01",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn02",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn03",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn04",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn05",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn06",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "GROUNDED",
+      "quote_fidelity": 1.0
+     },
+     {
+      "id": "rn07",
+      "gold": "NOT_ADDRESSED",
+      "pred": "NOT_ADDRESSED",
+      "correct": true,
+      "score": 1.0,
+      "cited_gold": false,
+      "grounding": "PARTIAL",
+      "quote_fidelity": 1.0
+     }
+    ],
+    "raw": [
+     {
+      "id": "f1-oncampus-hours",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(9)(i)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 6",
+       "9 FAM 402.5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 16.907913208007812,
+      "cost_usd": 0.00178,
+      "claim": "An F-1 student may work up to 20 hours per week on campus while school is in session.",
+      "summary": "The claim is directly supported: F-1 on-campus employment may not exceed 20 hours per week while school is in session.",
+      "explanation": "The claim is directly supported: F-1 on-campus employment may not exceed 20 hours per week while school is in session. [S6] This permission is subject to applicable conditions, including the student's status and, under USCIS guidance, approval by the designated school official (DSO). [S1][S6]"
+     },
+     {
+      "id": "f1-oncampus-40h",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(9)(i)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 6",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 6",
+       "8 CFR \u00a7 214.2(f)(9)(ii)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 7.720568895339966,
+      "cost_usd": 0.00386,
+      "claim": "An F-1 student may work 40 hours per week on campus during the fall semester.",
+      "summary": "The general rule limits on-campus employment to 20 hours per week when school is in session, so the claim is incorrect as an unqualified statement about a fall semester.",
+      "explanation": "The general rule limits on-campus employment to 20 hours per week when school is in session, so the claim is incorrect as an unqualified statement about a fall semester. [S1] An F-1 student may exceed 20 hours per week under special severe-economic-hardship circumstances designated by a Federal Register notice, but the sources do not specifically establish a 40-hour limit or authorization. [S2]"
+     },
+     {
+      "id": "opt-12-months",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(ii)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 214.2(f)"
+      ],
+      "quote_fidelity": 0.667,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.67588996887207,
+      "cost_usd": 0.00589,
+      "claim": "Post-completion optional practical training for an F-1 student is limited to 12 months.",
+      "summary": "The claim is contradicted because the sources describe a 24-month STEM OPT extension, so post-completion OPT is not categorically limited to 12 months.",
+      "explanation": "The claim is contradicted because the sources describe a 24-month STEM OPT extension, so post-completion OPT is not categorically limited to 12 months. [S3][S7] The sources do state that an F-1 student may initially be authorized for up to 12 months of practical training, with another 12 months available upon changing to a higher educational level. [S2][S4]"
+     },
+     {
+      "id": "stem-opt-24",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(ii)(C)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 214.2(f)(10)(ii)(C)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.648882865905762,
+      "cost_usd": 0.00747,
+      "claim": "The STEM OPT extension adds 24 months to post-completion OPT.",
+      "summary": "The sources state that STEM OPT is a 24-month extension that begins the day after initial post-completion OPT expires.",
+      "explanation": "The sources state that STEM OPT is a 24-month extension that begins the day after initial post-completion OPT expires. [S4] Thus, the claim is supported, subject to the student establishing eligibility for the extension. [S4]"
+     },
+     {
+      "id": "stem-opt-36",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(ii)(C)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 214.2(f)(10)(ii)(C)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.4179039001464844,
+      "cost_usd": 0.00888,
+      "claim": "The STEM OPT extension adds 36 months to post-completion OPT.",
+      "summary": "The claim is contradicted because the sources state that the STEM OPT extension is for 24 months, not 36 months.",
+      "explanation": "The claim is contradicted because the sources state that the STEM OPT extension is for 24 months, not 36 months. [S3] [S4]"
+     },
+     {
+      "id": "f1-grace-60",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(5)(iv)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 8",
+       "8 CFR \u00a7 214.2(f)(5)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 4"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.235718727111816,
+      "cost_usd": 0.01045,
+      "claim": "An F-1 student who completes their program has a 60-day grace period to depart the United States.",
+      "summary": "An F-1 student who completes a course of study and any authorized practical training following completion is allowed an additional 60-day period to prepare for departure from the United States.",
+      "explanation": "An F-1 student who completes a course of study and any authorized practical training following completion is allowed an additional 60-day period to prepare for departure from the United States. [S2] The claim omits that an F-1 student who fails to maintain a full course of study without DSO approval or otherwise fails to maintain status is not eligible for an additional departure period. [S2]"
+     },
+     {
+      "id": "f1-grace-30",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR 214.2(f)(5)(iv)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 8",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 4",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 8"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.207006931304932,
+      "cost_usd": 0.01201,
+      "claim": "An F-1 student gets a 30-day grace period after completing their degree program.",
+      "summary": "The claim is contradicted because the applicable period for an F-1 student who has completed a course of study and any authorized practical training is 60 days, not 30 days.",
+      "explanation": "The claim is contradicted because the applicable period for an F-1 student who has completed a course of study and any authorized practical training is 60 days, not 30 days. [S1] The regulation likewise provides an additional 60-day period for departure or transfer. [S6]"
+     },
+     {
+      "id": "f1-firstyear-offcampus",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(9)(ii)",
+      "cited_citations": [
+       "8 CFR \u00a7 214.2(f)(9)(ii)",
+       "8 CFR \u00a7 214.2(f)(9)(ii)",
+       "9 FAM 402.5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 7.006981134414673,
+      "cost_usd": 0.01387,
+      "claim": "An F-1 student must complete one full academic year before becoming eligible for off-campus employment authorization.",
+      "summary": "The regulation states that an F-1 student may generally receive part-time off-campus work authorization only after having been in F-1 status for one full academic year and being in good academic standing.",
+      "explanation": "The regulation states that an F-1 student may generally receive part-time off-campus work authorization only after having been in F-1 status for one full academic year and being in good academic standing. [S2] The claim is overbroad because the regulation permits the Secretary to suspend some or all of these requirements in emergent circumstances by Federal Register notice. [S2]"
+     },
+     {
+      "id": "cpt-integral",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(i)",
+      "cited_citations": [
+       "8 CFR \u00a7 214.2(f)(10)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 274a.12(b)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.2001171112060547,
+      "cost_usd": 0.01514,
+      "claim": "Curricular practical training must be an integral part of an established curriculum.",
+      "summary": "The claim is directly supported by the governing regulation, which states that curricular practical training must be an integral part of an established curriculum.",
+      "explanation": "The claim is directly supported by the governing regulation, which states that curricular practical training must be an integral part of an established curriculum. [S1] USCIS guidance states the same requirement. [S2]"
+     },
+     {
+      "id": "cpt-12-months-opt",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(i)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 214.2(f)(10)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "GROUNDED",
+      "latency_s": 6.608270883560181,
+      "cost_usd": 0.01702,
+      "claim": "A student who uses 12 months or more of full-time curricular practical training becomes ineligible for post-completion optional practical training.",
+      "summary": "The USCIS Policy Manual expressly states that eligibility for post-completion OPT requires that the student have \u201cNot have completed 1 year or more of full-time CPT.\u201d [S3] Twelve months is one year, so the claim is supported as stated.",
+      "explanation": "The USCIS Policy Manual expressly states that eligibility for post-completion OPT requires that the student have \u201cNot have completed 1 year or more of full-time CPT.\u201d [S3] Twelve months is one year, so the claim is supported as stated. [S3]"
+     },
+     {
+      "id": "h1b-cap-65k",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 214(g)(1)(A)",
+      "cited_citations": [
+       "9 FAM 402.10",
+       "9 FAM 402.10",
+       "INA \u00a7 214(g) (8 U.S.C. \u00a7 1184(g))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.94690203666687,
+      "cost_usd": 0.01891,
+      "claim": "The regular annual H-1B cap is 65,000 visas.",
+      "summary": "The regular H-1B numerical limit is 65,000 in each fiscal year.",
+      "explanation": "The regular H-1B numerical limit is 65,000 in each fiscal year. [S2] The statute describes this as the number of people who may be issued H-1B visas or otherwise granted nonimmigrant status, and separately provides a 20,000 advanced-degree exemption. [S3]"
+     },
+     {
+      "id": "h1b-cap-85k-regular",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "INA 214(g)(1)(A)",
+      "cited_citations": [
+       "9 FAM 402.10",
+       "8 CFR \u00a7 214.2(h)(8)(iii)(A)",
+       "9 FAM 402.10"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.322358131408691,
+      "cost_usd": 0.02067,
+      "claim": "The regular H-1B cap is 85,000 visas per year.",
+      "summary": "The source states that H-1B nonimmigrant applicants, excluding specified Department of Defense participants, may not exceed 65,000 in each fiscal year, which contradicts the claimed 85,000 regular cap.",
+      "explanation": "The source states that H-1B nonimmigrant applicants, excluding specified Department of Defense participants, may not exceed 65,000 in each fiscal year, which contradicts the claimed 85,000 regular cap. [S1] The additional 20,000 applicants with qualifying U.S. advanced degrees are described as exempt from that limitation, so they do not make the regular cap 85,000. [S1]"
+     },
+     {
+      "id": "h1b-max-6yr",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(h)(13)(iii)(A)",
+      "cited_citations": [
+       "9 FAM 402.10",
+       "8 CFR \u00a7 214.2(h)(13)(iii)(C)",
+       "8 CFR \u00a7 214.2(h)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "GROUNDED",
+      "latency_s": 3.756814956665039,
+      "cost_usd": 0.02217,
+      "claim": "The maximum period of stay in H-1B status is generally six years.",
+      "summary": "The claim is directly supported: the State Department states, \"Generally, the maximum length of stay in H-1B status is six years.\" [S1] The regulation likewise provides that an H-1B worker's \"total period of stay may not exceed six years,\" while recognizing a 10-year limit for certain Department of Defense workers.",
+      "explanation": "The claim is directly supported: the State Department states, \"Generally, the maximum length of stay in H-1B status is six years.\" [S1] The regulation likewise provides that an H-1B worker's \"total period of stay may not exceed six years,\" while recognizing a 10-year limit for certain Department of Defense workers. [S3]"
+     },
+     {
+      "id": "h1b-max-3yr",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR 214.2(h)(13)(iii)(A)",
+      "cited_citations": [
+       "8 CFR \u00a7 214.2(h)",
+       "9 FAM 402.10",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.5698020458221436,
+      "cost_usd": 0.02381,
+      "claim": "H-1B status is capped at a total of three years and cannot be extended.",
+      "summary": "The claim is contradicted because an H-1B extension may be authorized for up to three years, while the total period of stay for a specialty-occupation H-1B worker may not exceed six years.",
+      "explanation": "The claim is contradicted because an H-1B extension may be authorized for up to three years, while the total period of stay for a specialty-occupation H-1B worker may not exceed six years. [S1] The source also provides a separate 10-year limit for certain Department of Defense H-1B projects, further showing that three years is not the total cap for all H-1B status. [S1]"
+     },
+     {
+      "id": "h1b-specialty-occupation",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 214(i)(1)",
+      "cited_citations": [
+       "8 CFR \u00a7 214.2(h)(4)(C)(iii)",
+       "8 CFR \u00a7 214.2(h)(4)",
+       "9 FAM 402.10"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.3122639656066895,
+      "cost_usd": 0.02551,
+      "claim": "H-1B classification requires a specialty occupation that normally needs at least a bachelor's degree or its equivalent.",
+      "summary": "The regulation states that an H-1B classification may be granted for services in a specialty occupation requiring a baccalaureate or higher degree or its equivalent as the minimum entry requirement.",
+      "explanation": "The regulation states that an H-1B classification may be granted for services in a specialty occupation requiring a baccalaureate or higher degree or its equivalent as the minimum entry requirement. [S2] The regulation also provides that one qualifying criterion is that such a degree is normally the minimum requirement for entry into the particular occupation. [S1]"
+     },
+     {
+      "id": "h1b-masters-exemption",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 214(g)(5)(C)",
+      "cited_citations": [
+       "INA \u00a7 212(n) (8 U.S.C. \u00a7 1182(n))",
+       "9 FAM 402.10",
+       "8 CFR \u00a7 214.2(h)(8)(iii)(A)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.715466022491455,
+      "cost_usd": 0.02744,
+      "claim": "There is an additional exemption of 20,000 H-1B visas for people with a U.S. master's degree or higher.",
+      "summary": "The sources establish a 20,000-person exemption from the H-1B numerical limitation for individuals who earned a master's or higher degree from a U.S.",
+      "explanation": "The sources establish a 20,000-person exemption from the H-1B numerical limitation for individuals who earned a master's or higher degree from a U.S. institution of higher education. [S4] The claim omits that the degree must be from a qualifying U.S. institution, and the State Department source further describes the institution as public or nonprofit. [S2]"
+     },
+     {
+      "id": "b12-no-employment",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.1(e)",
+      "cited_citations": [
+       "8 CFR \u00a7 214.2(b)",
+       "8 CFR \u00a7 214.1(e)",
+       "USCIS Policy Manual Vol. 2, Part L, Ch. 6"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.934669733047485,
+      "cost_usd": 0.02902,
+      "claim": "A person admitted as a B-2 visitor for pleasure may not accept employment in the United States.",
+      "summary": "The regulation identifies a B-2 visitor as a visitor for pleasure.",
+      "explanation": "The regulation identifies a B-2 visitor as a visitor for pleasure. [S1] It expressly provides that a nonimmigrant in the temporary-visitor-for-pleasure class may not engage in any employment, which supports the claim that such a person may not accept employment in the United States. [S2]"
+     },
+     {
+      "id": "unlawful-presence-3yr",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 212(a)(9)(B)(i)",
+      "cited_citations": [
+       "9 FAM 302.11",
+       "USCIS Policy Manual Vol. 7, Part B, Ch. 8",
+       "8 CFR \u00a7 214.15(i)(3)(ii)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 7.111837863922119,
+      "cost_usd": 0.03118,
+      "claim": "Unlawful presence of more than 180 days but less than one year triggers a three-year bar on admission after departure.",
+      "summary": "The statute provides a three-year inadmissibility period when a person was unlawfully present for more than 180 days but less than one year, voluntarily departed before removal proceedings began, and seeks admission within three years of departure or removal.",
+      "explanation": "The statute provides a three-year inadmissibility period when a person was unlawfully present for more than 180 days but less than one year, voluntarily departed before removal proceedings began, and seeks admission within three years of departure or removal. [S5] The claim omits the requirements that the departure be voluntary and occur before proceedings commenced, so it is not correct as an unconditional statement. [S1]"
+     },
+     {
+      "id": "unlawful-presence-10yr",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 212(a)(9)(B)(i)",
+      "cited_citations": [
+       "9 FAM 302.11",
+       "9 FAM 302.11",
+       "USCIS Policy Manual Vol. 7, Part M, Ch. 3"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.090821266174316,
+      "cost_usd": 0.03294,
+      "claim": "Unlawful presence of one year or more triggers a ten-year bar on admission after departure.",
+      "summary": "The claim is supported: after an individual has accrued one year or more of unlawful presence and departs the United States, the individual is generally barred from returning for 10 years.",
+      "explanation": "The claim is supported: after an individual has accrued one year or more of unlawful presence and departs the United States, the individual is generally barred from returning for 10 years. [S1] The statute describes the consequence as inadmissibility if the person seeks admission within 10 years after departure or removal. [S4]"
+     },
+     {
+      "id": "aos-inspected-admitted",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 245(a)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 7, Part A, Ch. 6",
+       "USCIS Policy Manual Vol. 7, Part C, Ch. 4",
+       "USCIS Policy Manual Vol. 7, Part B, Ch. 2"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.396812915802002,
+      "cost_usd": 0.03457,
+      "claim": "To adjust status under INA 245(a) the applicant must have been inspected and admitted or paroled into the United States.",
+      "summary": "The claim states the general INA 245(a) eligibility requirement: the applicant must have been inspected and admitted or inspected and paroled before filing the adjustment application.",
+      "explanation": "The claim states the general INA 245(a) eligibility requirement: the applicant must have been inspected and admitted or inspected and paroled before filing the adjustment application. [S3] However, the claim is overbroad because the requirement does not apply to INA 245(i) and VAWA applicants, and certain immigrants are legally deemed paroled for adjustment purposes. [S3][S4][S7]"
+     },
+     {
+      "id": "immediate-relative-no-cap",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 201(b)(2)(A)(i)",
+      "cited_citations": [
+       "9 FAM 503.1",
+       "INA \u00a7 201(b) (8 U.S.C. \u00a7 1151(b))",
+       "9 FAM 504.3"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.00584864616394,
+      "cost_usd": 0.03612,
+      "claim": "Immediate relatives of U.S. citizens are not subject to numerical limits on immigrant visas.",
+      "summary": "The claim is directly supported: immediate-relative immigrant visas are not subject to numerical limits.",
+      "explanation": "The claim is directly supported: immediate-relative immigrant visas are not subject to numerical limits. [S1] The statute defines \u201cimmediate relatives\u201d as children, spouses, and parents of U.S. citizens, with an age requirement for citizen petitioners sponsoring parents. [S2]"
+     },
+     {
+      "id": "eb-preference-categories",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 203(b)",
+      "cited_citations": [
+       "9 FAM 502.4",
+       "USCIS Policy Manual Vol. 7, Part A, Ch. 6",
+       "9 FAM 502.4"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.106597900390625,
+      "cost_usd": 0.03733,
+      "claim": "The employment-based immigrant preference system allocates visas across five preference categories.",
+      "summary": "The source directly states that employment-based immigrant visas are divided into five preference categories.",
+      "explanation": "The source directly states that employment-based immigrant visas are divided into five preference categories. [S1] This matches the claim that the system allocates visas across five preference categories. [S1]"
+     },
+     {
+      "id": "natz-5-years",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 316(a)",
+      "cited_citations": [
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "8 CFR \u00a7 316.5(c)",
+       "8 CFR \u00a7 316.2(a)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.506594181060791,
+      "cost_usd": 0.03878,
+      "claim": "Naturalization generally requires five years of continuous residence as a lawful permanent resident.",
+      "summary": "The claim is supported because the statute generally requires an applicant to have resided continuously in the United States for at least five years after lawful admission for permanent residence.",
+      "explanation": "The claim is supported because the statute generally requires an applicant to have resided continuously in the United States for at least five years after lawful admission for permanent residence. [S1] The regulation likewise describes five years of continuous residence after lawful admission as a permanent resident as an eligibility requirement, while recognizing exceptions elsewhere in the regulations. [S3]"
+     },
+     {
+      "id": "natz-10-years",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "INA 316(a)",
+      "cited_citations": [
+       "8 CFR \u00a7 313.2",
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "INA \u00a7 316(b) (8 U.S.C. \u00a7 1427(b))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.505964994430542,
+      "cost_usd": 0.04021,
+      "claim": "You must hold a green card for ten years before you can apply for naturalization.",
+      "summary": "The claim is contradicted because the general naturalization rule requires at least five years of continuous residence after lawful admission as a permanent resident, not ten years.",
+      "explanation": "The claim is contradicted because the general naturalization rule requires at least five years of continuous residence after lawful admission as a permanent resident, not ten years. [S2][S7] USCIS may accept an application up to three months before the applicant otherwise satisfies the continuous-residence requirement. [S5]"
+     },
+     {
+      "id": "natz-spouse-3-years",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 319(a)",
+      "cited_citations": [
+       "8 CFR \u00a7 319.1(a)",
+       "INA \u00a7 319(a) (8 U.S.C. \u00a7 1430(a))",
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.030301094055176,
+      "cost_usd": 0.04193,
+      "claim": "The spouse of a U.S. citizen may apply for naturalization after three years of permanent residence.",
+      "summary": "The sources establish that a spouse of a U.S.",
+      "explanation": "The sources establish that a spouse of a U.S. citizen can qualify for naturalization after at least three years of lawful permanent residence, but only if additional requirements are met. [S1] Those requirements include living in marital union with the citizen spouse for the preceding three years, the spouse having been a U.S. citizen throughout that period, and at least 18 months of physical presence in the United States. [S1]"
+     },
+     {
+      "id": "natz-physical-presence",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 316(a)",
+      "cited_citations": [
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "8 CFR \u00a7 316.5(b)",
+       "INA \u00a7 328(d) (8 U.S.C. \u00a7 1439(d))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.623512029647827,
+      "cost_usd": 0.04344,
+      "claim": "An applicant for naturalization must have been physically present in the United States for at least half of the required residence period.",
+      "summary": "For the general five-year naturalization requirement, the applicant must have been physically present in the United States for periods totaling at least half of that time.",
+      "explanation": "For the general five-year naturalization requirement, the applicant must have been physically present in the United States for periods totaling at least half of that time. [S1] A three-year residence pathway for certain spouses likewise requires physical presence totaling at least half of that time, but an armed-forces provision allows naturalization without physical presence for any specified period, so the claim is too broad as an unqualified statement. [S7] [S5]"
+     },
+     {
+      "id": "asylum-one-year",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 208(a)(2)(B)",
+      "cited_citations": [
+       "INA \u00a7 208(a)(2) (8 U.S.C. \u00a7 1158(a)(2))",
+       "8 CFR \u00a7 1208.4(a)(2)(B)(ii)",
+       "8 CFR \u00a7 1209.1(b)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.941518783569336,
+      "cost_usd": 0.04512,
+      "claim": "An application for asylum must generally be filed within one year of arrival in the United States.",
+      "summary": "The claim is supported because the statute requires an asylum applicant to demonstrate by clear and convincing evidence that the application was filed within one year after arrival in the United States.",
+      "explanation": "The claim is supported because the statute requires an asylum applicant to demonstrate by clear and convincing evidence that the application was filed within one year after arrival in the United States. [S1] The one-year rule is subject to exceptions for changed or extraordinary circumstances, so \u201cgenerally\u201d is accurate. [S1] Regulations also provide that the period is generally calculated from the applicant\u2019s last arrival and that adjudicators determine whether an exception applies. [S2]"
+     },
+     {
+      "id": "asylum-no-deadline",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "INA 208(a)(2)(B)",
+      "cited_citations": [
+       "INA \u00a7 208(d)(5) (8 U.S.C. \u00a7 1158(d)(5))",
+       "INA \u00a7 208(a)(2) (8 U.S.C. \u00a7 1158(a)(2))",
+       "INA \u00a7 208(d) (8 U.S.C. \u00a7 1158(d))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.108551979064941,
+      "cost_usd": 0.04659,
+      "claim": "There is no time limit for filing an asylum application.",
+      "summary": "The claim is contradicted because the statute establishes a one-year filing limit for asylum applications.",
+      "explanation": "The claim is contradicted because the statute establishes a one-year filing limit for asylum applications. [S2] Exceptions may apply for changed circumstances or extraordinary circumstances relating to the delay, and the one-year limit does not apply to an unaccompanied alien child. [S2]"
+     },
+     {
+      "id": "j1-212e-not-universal",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "INA 212(e)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part D, Ch. 3",
+       "USCIS Policy Manual Vol. 2, Part D, Ch. 4",
+       "USCIS Policy Manual Vol. 2, Part D, Ch. 1"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.285327911376953,
+      "cost_usd": 0.04807,
+      "claim": "Every J-1 exchange visitor is subject to the two-year foreign residence requirement.",
+      "summary": "The claim is contradicted because the source states that only certain J-1 exchange visitors are subject to the requirement, rather than every J-1 exchange visitor.",
+      "explanation": "The claim is contradicted because the source states that only certain J-1 exchange visitors are subject to the requirement, rather than every J-1 exchange visitor. [S1] The Department of State likewise describes the individuals covered as \"Certain J-1 exchange visitors.\" [S5]"
+     },
+     {
+      "id": "j1-212e-exists",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "INA 212(e)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part D, Ch. 3",
+       "9 FAM 302.13",
+       "9 FAM 402.17"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 7.073590993881226,
+      "cost_usd": 0.05015,
+      "claim": "Some J-1 exchange visitors must reside abroad for two years before becoming eligible for an H or L visa or permanent residence.",
+      "summary": "The sources directly state that certain J-1 exchange visitors are subject to a two-year foreign residence requirement and must complete it before being eligible to apply for an H or L visa, an immigrant visa, adjustment of status, or lawful permanent resident status.",
+      "explanation": "The sources directly state that certain J-1 exchange visitors are subject to a two-year foreign residence requirement and must complete it before being eligible to apply for an H or L visa, an immigrant visa, adjustment of status, or lawful permanent resident status. [S1][S2] The requirement is not universal for all J-1 exchange visitors and may be satisfied through an approved waiver. [S1][S2]"
+     },
+     {
+      "id": "l1a-7-years",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(l)(12)(i)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part L, Ch. 10",
+       "9 FAM 402.12",
+       "9 FAM 402.12"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.574201822280884,
+      "cost_usd": 0.05178,
+      "claim": "The maximum period of stay for an L-1A intracompany transferee in a managerial capacity is seven years.",
+      "summary": "The claim is directly supported: USCIS lists the maximum period of stay for an L-1A manager or executive as seven years.",
+      "explanation": "The claim is directly supported: USCIS lists the maximum period of stay for an L-1A manager or executive as seven years. [S1] The State Department likewise states that the maximum allowable stay for an applicant employed in a managerial or executive capacity may not exceed seven years. [S2]"
+     },
+     {
+      "id": "l1b-5-years",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(l)(12)(i)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part L, Ch. 10",
+       "9 FAM 402.12",
+       "8 CFR \u00a7 214.2(l)(12)(i)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.883875131607056,
+      "cost_usd": 0.05373,
+      "claim": "An L-1B specialized knowledge employee may remain in the United States for a maximum of five years.",
+      "summary": "The sources establish a five-year maximum period for an L-1B specialized-knowledge beneficiary.",
+      "explanation": "The sources establish a five-year maximum period for an L-1B specialized-knowledge beneficiary. [S1] However, the five-year limit is subject to exceptions and may include time spent in H status, so the claim is incomplete as a categorical statement. [S2]"
+     },
+     {
+      "id": "l1-one-year-abroad",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(l)(1)(ii)",
+      "cited_citations": [
+       "9 FAM 402.12",
+       "8 CFR \u00a7 214.2(l)(3)",
+       "9 FAM 402.12"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.737809896469116,
+      "cost_usd": 0.05575,
+      "claim": "An L-1 beneficiary must have worked for the qualifying organization abroad for at least one continuous year within the preceding three years.",
+      "summary": "The sources establish that an L-1 beneficiary generally must have at least one continuous year of qualifying employment abroad during the relevant three-year period.",
+      "explanation": "The sources establish that an L-1 beneficiary generally must have at least one continuous year of qualifying employment abroad during the relevant three-year period. [S2] The requirement is specifically described as full-time employment, and the relevant period is generally measured before the filing of the petition under the cited regulation and agency guidance. [S2][S3] Therefore, the claim is accurate in substance but omits the full-time condition and the rules concerning how the three-year period is calculated. [S2][S5][S7]"
+     },
+     {
+      "id": "f1-cap-gap",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(5)(vi)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 214.2(f)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.8608009815216064,
+      "cost_usd": 0.05791,
+      "claim": "An F-1 student who is the beneficiary of a timely filed H-1B petition requesting a change of status may have their F-1 status and employment authorization automatically extended.",
+      "summary": "An F-1 student may receive an automatic extension of F-1 status and employment authorization when the H-1B petition is timely filed and the regulatory conditions are met.",
+      "explanation": "An F-1 student may receive an automatic extension of F-1 status and employment authorization when the H-1B petition is timely filed and the regulatory conditions are met. [S1][S2] The claim omits important conditions, including that the student must generally be currently authorized for OPT employment, must not have violated F-1 status, and the petition must be nonfrivolous and request an eligible employment start date. [S1][S2]"
+     },
+     {
+      "id": "f1-full-course",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(6)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 3",
+       "8 CFR \u00a7 214.2(f)(6)(iii)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 4"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.1804728507995605,
+      "cost_usd": 0.05957,
+      "claim": "An F-1 student must pursue a full course of study to maintain status.",
+      "summary": "The regulation generally defines F-1 duration of status as the period when the student is pursuing a full course of study and making normal progress.",
+      "explanation": "The regulation generally defines F-1 duration of status as the period when the student is pursuing a full course of study and making normal progress. [S5] However, an F-1 student may take a reduced course load with prior DSO authorization, so the claim is too broad as an absolute rule. [S2] A student who drops below a full course of study without that approval is considered out of status. [S2]"
+     },
+     {
+      "id": "f1-online-limit",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR 214.2(f)(6)(i)(G)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 3",
+       "8 CFR \u00a7 214.2(f)(6)",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 3"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.96828293800354,
+      "cost_usd": 0.06131,
+      "claim": "No more than one online class per session may count toward an F-1 student's full course of study requirement.",
+      "summary": "The regulation provides that no more than the equivalent of one online or distance-education class, or three credits, per session may count toward an F-1 student's full course of study.",
+      "explanation": "The regulation provides that no more than the equivalent of one online or distance-education class, or three credits, per session may count toward an F-1 student's full course of study. [S2] This limit applies when the class does not require the student's physical attendance for classes, examinations, or other purposes integral to completion, and language-study programs have a stricter rule under which no online or distance-education classes count. [S2]"
+     },
+     {
+      "id": "visa-vs-status",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "INA 221(h)",
+      "cited_citations": [
+       "INA \u00a7 214(q)(3)(C) (8 U.S.C. \u00a7 1184(q)(3)(C))",
+       "8 CFR \u00a7 1214.1",
+       "8 CFR \u00a7 1212.1(g)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.632906913757324,
+      "cost_usd": 0.06272,
+      "claim": "A nonimmigrant visa in a passport guarantees admission to the United States.",
+      "summary": "A nonimmigrant applicant must establish that they are admissible, even when applying for admission with a valid passport and visa.",
+      "explanation": "A nonimmigrant applicant must establish that they are admissible, even when applying for admission with a valid passport and visa. [S6] Admission is also conditioned on compliance with inspection requirements, so a visa does not guarantee admission. [S6]"
+     },
+     {
+      "id": "out-of-corpus-processing-time",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "8 CFR \u00a7 1245.20(d)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.775671720504761,
+      "cost_usd": 0.06439,
+      "claim": "The USCIS Nebraska Service Center currently processes Form I-765 applications in 45 days.",
+      "summary": "The supplied sources address Form I-765 filing requirements, OPT eligibility, and filing deadlines, but they do not state a current processing time for the Nebraska Service Center.",
+      "explanation": "The supplied sources address Form I-765 filing requirements, OPT eligibility, and filing deadlines, but they do not state a current processing time for the Nebraska Service Center. [S1] [S4] Therefore, the claim that the Nebraska Service Center currently processes Form I-765 applications in 45 days is not resolved by these sources. [S1] [S4]"
+     },
+     {
+      "id": "out-of-corpus-case-law",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "INA \u00a7 238(a) (8 U.S.C. \u00a7 1228(a))",
+       "INA \u00a7 237(a)(2) (8 U.S.C. \u00a7 1227(a)(2))",
+       "INA \u00a7 238(b) (8 U.S.C. \u00a7 1228(b))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.764946222305298,
+      "cost_usd": 0.06626,
+      "claim": "The Board of Immigration Appeals held that a conviction for simple possession is not an aggravated felony.",
+      "summary": "The supplied sources do not state that the Board of Immigration Appeals held that a conviction for simple possession is not an aggravated felony.",
+      "explanation": "The supplied sources do not state that the Board of Immigration Appeals held that a conviction for simple possession is not an aggravated felony. [S4] Although one source discusses simple possession and cites BIA decisions, it does not state the claimed aggravated-felony holding. [S4]"
+     },
+     {
+      "id": "out-of-corpus-foreign-law",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "9 FAM 201.1",
+       "8 CFR \u00a7 214.6(d)",
+       "9 FAM 201.1"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "GROUNDED",
+      "latency_s": 5.546293020248413,
+      "cost_usd": 0.0679,
+      "claim": "Canada requires U.S. citizens to obtain an eTA before flying to Toronto.",
+      "summary": "The supplied sources address Canadian citizens seeking admission to the United States, including the statement that \u201c[a] visa is generally not required for Canadian citizens.\u201d [S5] They do not address whether Canada requires U.S.",
+      "explanation": "The supplied sources address Canadian citizens seeking admission to the United States, including the statement that \u201c[a] visa is generally not required for Canadian citizens.\u201d [S5] They do not address whether Canada requires U.S. citizens to obtain an eTA before flying to Toronto. [S5]"
+     },
+     {
+      "id": "compound-opt-stem",
+      "gold_verdict": "PARTIALLY_SUPPORTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR 214.2(f)(10)(ii)",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5",
+       "USCIS Policy Manual Vol. 2, Part F, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.0841920375823975,
+      "cost_usd": 0.06949,
+      "claim": "F-1 students get 12 months of OPT, and STEM graduates can extend it by 36 months for a total of four years.",
+      "summary": "The sources state that the STEM OPT extension is 24 months, not 36 months, so the claim's extension period is contradicted.",
+      "explanation": "The sources state that the STEM OPT extension is 24 months, not 36 months, so the claim's extension period is contradicted. [S1] The provided sources do not establish that F-1 students receive 12 months of initial OPT or that the total is four years. [S1]"
+     },
+     {
+      "id": "compound-h1b",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "INA 214(g)",
+      "cited_citations": [
+       "9 FAM 402.10",
+       "INA \u00a7 212(n) (8 U.S.C. \u00a7 1182(n))",
+       "8 CFR \u00a7 214.2(h)(8)(iii)(E)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.7702720165252686,
+      "cost_usd": 0.07156,
+      "claim": "The H-1B cap is 65,000 with 20,000 more for U.S. master's graduates, and H-1B status lasts a maximum of six years.",
+      "summary": "The sources support a 65,000-per-fiscal-year limit plus 20,000 additional places for H-1B applicants with a master's or higher degree from a public or nonprofit U.S.",
+      "explanation": "The sources support a 65,000-per-fiscal-year limit plus 20,000 additional places for H-1B applicants with a master's or higher degree from a public or nonprofit U.S. institution of higher education, but the claim omits those conditions. [S1] The sources also identify a six-year maximum period of H-1B admission, subject to recapture of qualifying time spent physically outside the United States. [S4]"
+     },
+     {
+      "id": "rt01",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 501",
+       "IRS Publication 501"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.1736409664154053,
+      "cost_usd": 0.07308,
+      "claim": "For 2025, the standard deduction for a single filer is $15,750.",
+      "summary": "For 2025, IRS Publication 17 states that the standard deduction for single filers is $15,750.",
+      "explanation": "For 2025, IRS Publication 17 states that the standard deduction for single filers is $15,750. [S1] Publication 501 likewise lists $15,750 for the single filing status. [S3]"
+     },
+     {
+      "id": "rt02",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 501",
+       "IRS Publication 17"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.6733288764953613,
+      "cost_usd": 0.07471,
+      "claim": "For 2025, the standard deduction for a single filer is exactly $15,000.",
+      "summary": "The claim is contradicted because the IRS lists the 2025 standard deduction for a single filer as $15,750, not $15,000.",
+      "explanation": "The claim is contradicted because the IRS lists the 2025 standard deduction for a single filer as $15,750, not $15,000. [S4] The $15,000 amount is therefore not the exact standard deduction stated for single filers in the cited 2025 chart. [S4]"
+     },
+     {
+      "id": "rt03",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 17",
+       "IRS Publication 501"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.0200283527374268,
+      "cost_usd": 0.07609,
+      "claim": "For 2025, the standard deduction for married taxpayers filing jointly is $31,500.",
+      "summary": "For 2025, the standard deduction for married taxpayers filing jointly is $31,500.",
+      "explanation": "For 2025, the standard deduction for married taxpayers filing jointly is $31,500. [S1] This amount also applies to a qualifying surviving spouse under the cited IRS table. [S1]"
+     },
+     {
+      "id": "rt04",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 17",
+       "IRS Publication 501"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.980550050735474,
+      "cost_usd": 0.0778,
+      "claim": "For 2025, the standard deduction for a head of household is $23,625.",
+      "summary": "For 2025, the IRS lists the standard deduction for head of household as $23,625.",
+      "explanation": "For 2025, the IRS lists the standard deduction for head of household as $23,625. [S1] This amount is the standard figure for most head-of-household filers, subject to the exceptions identified by the IRS. [S3]"
+     },
+     {
+      "id": "rt05",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 501",
+       "IRS Publication 501"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.595287084579468,
+      "cost_usd": 0.07963,
+      "claim": "For 2025, the head of household standard deduction is larger than the standard deduction for married taxpayers filing jointly.",
+      "summary": "The claim is contradicted because the 2025 head-of-household standard deduction is $23,625, while the married-filing-jointly standard deduction is $31,500.",
+      "explanation": "The claim is contradicted because the 2025 head-of-household standard deduction is $23,625, while the married-filing-jointly standard deduction is $31,500. [S1] Therefore, the married-filing-jointly deduction is larger by $7,875. [S1]"
+     },
+     {
+      "id": "rt06",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 501",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 17",
+       "IRS Publication 501"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.437896966934204,
+      "cost_usd": 0.08157,
+      "claim": "A dual-status alien generally cannot claim the standard deduction.",
+      "summary": "The claim is supported because IRS Publication 17 states that a dual-status alien cannot take the standard deduction.",
+      "explanation": "The claim is supported because IRS Publication 17 states that a dual-status alien cannot take the standard deduction. [S2] IRS Publication 519 likewise says a dual-status taxpayer cannot claim the standard deduction allowed on Form 1040 or Form 1040-SR, while allowing itemization of allowable deductions. [S1]"
+     },
+     {
+      "id": "rt07",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "IRS Publication 519",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 519",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.373661041259766,
+      "cost_usd": 0.08332,
+      "claim": "To meet the substantial presence test for 2025, a person must be physically present in the United States on at least 31 days during 2025.",
+      "summary": "The source directly states that meeting the 2025 substantial presence test requires physical presence on at least 31 days during 2025.",
+      "explanation": "The source directly states that meeting the 2025 substantial presence test requires physical presence on at least 31 days during 2025. [S1] However, it also requires 183 weighted days during the three-year period including 2025, 2024, and 2023, so 31 days in 2025 alone is not sufficient. [S1]"
+     },
+     {
+      "id": "rt08",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 519",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 519",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.874505043029785,
+      "cost_usd": 0.08484,
+      "claim": "The substantial presence test counts one-third of the days a person was present in the United States during the first preceding year.",
+      "summary": "For the 2025 substantial presence test, the source states that one-third of the days present during 2024 are counted.",
+      "explanation": "For the 2025 substantial presence test, the source states that one-third of the days present during 2024 are counted. [S1] This makes the claim accurate when the first preceding year is 2024 relative to the 2025 test year. [S1]"
+     },
+     {
+      "id": "rt09",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "IRS Publication 519",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 519",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.4204728603363037,
+      "cost_usd": 0.08618,
+      "claim": "The substantial presence test counts one-half of the days a person was present in the United States during the second preceding year.",
+      "summary": "For the 2025 substantial presence test, the second preceding year is 2023, and the source states that the test counts one-sixth\u2014not one-half\u2014of the days present in that year.",
+      "explanation": "For the 2025 substantial presence test, the second preceding year is 2023, and the source states that the test counts one-sixth\u2014not one-half\u2014of the days present in that year. [S1] The claim is therefore contradicted. [S1]"
+     },
+     {
+      "id": "rt10",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 519",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 17",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.745095252990723,
+      "cost_usd": 0.08785,
+      "claim": "An alien who meets either the green card test or the substantial presence test is a resident alien for U.S. tax purposes.",
+      "summary": "The claim is directly supported: IRS Publication 519 states that an alien is a resident alien for U.S.",
+      "explanation": "The claim is directly supported: IRS Publication 519 states that an alien is a resident alien for U.S. tax purposes when the alien meets either the green card test or the substantial presence test. [S1] IRS Publication 17 states the same rule in shorter form. [S2]"
+     },
+     {
+      "id": "rt11",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "IRS Publication 519",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 519",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.5559470653533936,
+      "cost_usd": 0.08951,
+      "claim": "Meeting the substantial presence test requires 183 days of physical presence in the current calendar year alone.",
+      "summary": "The claim is contradicted because the source requires at least 31 days in the current year, not 183 days in that year alone.",
+      "explanation": "The claim is contradicted because the source requires at least 31 days in the current year, not 183 days in that year alone. [S1] The 183-day requirement is calculated over a three-year period using weighted days from the current and two preceding years. [S1]"
+     },
+     {
+      "id": "rt12",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "IRS Publication 970",
+      "cited_citations": [
+       "IRS Publication 970",
+       "IRS Publication 970",
+       "IRS Publication 970"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.932615041732788,
+      "cost_usd": 0.09099,
+      "claim": "The maximum American opportunity credit for 2025 is $2,500 per eligible student.",
+      "summary": "The claim is supported: for 2025, the American opportunity credit is available in an amount of up to $2,500 for each qualifying student.",
+      "explanation": "The claim is supported: for 2025, the American opportunity credit is available in an amount of up to $2,500 for each qualifying student. [S6] The maximum generally requires at least $4,000 of adjusted qualified education expenses and may be limited by the taxpayer's income. [S3][S6]"
+     },
+     {
+      "id": "rt13",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "IRS Publication 970",
+      "cited_citations": [
+       "IRS Publication 970",
+       "IRS Publication 970",
+       "IRS Publication 970"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.712049961090088,
+      "cost_usd": 0.09264,
+      "claim": "The American opportunity credit equals 100 percent of the first $2,000 of qualified education expenses plus 25 percent of the next $2,000.",
+      "summary": "The source states that the American opportunity credit is calculated as 100% of the first $2,000 of qualified education expenses plus 25% of the next $2,000, for an eligible student.",
+      "explanation": "The source states that the American opportunity credit is calculated as 100% of the first $2,000 of qualified education expenses plus 25% of the next $2,000, for an eligible student. [S5] However, the credit may be reduced based on modified adjusted gross income, so the claim is incomplete if it describes the final credit without qualification. [S5]"
+     },
+     {
+      "id": "rt14",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "IRS Publication 970",
+      "cited_citations": [
+       "IRS Publication 970",
+       "IRS Publication 970",
+       "IRS Publication 970"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.4883193969726562,
+      "cost_usd": 0.09411,
+      "claim": "The maximum American opportunity credit is $4,000 per eligible student.",
+      "summary": "The claim is contradicted because the IRS states that the maximum American opportunity credit is $2,500 per eligible student, not $4,000.",
+      "explanation": "The claim is contradicted because the IRS states that the maximum American opportunity credit is $2,500 per eligible student, not $4,000. [S3] The $4,000 amount refers to the qualified education expenses needed to claim the full $2,500 credit, rather than to the credit's maximum amount. [S3]"
+     },
+     {
+      "id": "ri01",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 201(e) (8 U.S.C. \u00a7 1151(e))",
+       "INA \u00a7 201(d) (8 U.S.C. \u00a7 1151(d))",
+       "INA \u00a7 201(c) (8 U.S.C. \u00a7 1151(c))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.088116884231567,
+      "cost_usd": 0.09564,
+      "claim": "The worldwide level of diversity immigrants is 55,000 for each fiscal year.",
+      "summary": "INA \u00a7 201(e) directly states that the worldwide level of diversity immigrants is 55,000 for each fiscal year.",
+      "explanation": "INA \u00a7 201(e) directly states that the worldwide level of diversity immigrants is 55,000 for each fiscal year. [S1] This claim concerns the statutory worldwide level, although the number of diversity visas available for use may be reduced by specified offsets. [S7]"
+     },
+     {
+      "id": "ri02",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 201(e) (8 U.S.C. \u00a7 1151(e))",
+       "INA \u00a7 201(d) (8 U.S.C. \u00a7 1151(d))",
+       "INA \u00a7 203(c) (8 U.S.C. \u00a7 1153(c))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.9953720569610596,
+      "cost_usd": 0.09706,
+      "claim": "The statute sets the worldwide level of diversity immigrants at 50,000 for each fiscal year.",
+      "summary": "The statute states that the worldwide level of diversity immigrants is 55,000 for each fiscal year, not 50,000.",
+      "explanation": "The statute states that the worldwide level of diversity immigrants is 55,000 for each fiscal year, not 50,000. [S1] Therefore, the claim is contradicted by the cited statutory text. [S1]"
+     },
+     {
+      "id": "ri03",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 201(d) (8 U.S.C. \u00a7 1151(d))",
+       "INA \u00a7 201(c) (8 U.S.C. \u00a7 1151(c))",
+       "INA \u00a7 201(e) (8 U.S.C. \u00a7 1151(e))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.6847598552703857,
+      "cost_usd": 0.09847,
+      "claim": "The worldwide level of employment-based immigrants is 140,000 plus an additional computed number.",
+      "summary": "INA \u00a7 201(d)(1) states that the worldwide level of employment-based immigrants for a fiscal year equals 140,000 plus the number computed under paragraph (2).",
+      "explanation": "INA \u00a7 201(d)(1) states that the worldwide level of employment-based immigrants for a fiscal year equals 140,000 plus the number computed under paragraph (2). [S1] The additional number is computed under paragraph (2), with the calculation depending on the fiscal year and, for subsequent fiscal years, on unused family-sponsored immigrant visa numbers from the previous fiscal year. [S1]"
+     },
+     {
+      "id": "ri04",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 201(d) (8 U.S.C. \u00a7 1151(d))",
+       "INA \u00a7 201(e) (8 U.S.C. \u00a7 1151(e))",
+       "INA \u00a7 201(c) (8 U.S.C. \u00a7 1151(c))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.792886972427368,
+      "cost_usd": 0.09991,
+      "claim": "The worldwide level of employment-based immigrants is 65,000 per fiscal year.",
+      "summary": "The claim is contradicted because INA \u00a7 201(d) sets the worldwide level of employment-based immigrants at 140,000 plus an amount computed under paragraph (2), rather than 65,000.",
+      "explanation": "The claim is contradicted because INA \u00a7 201(d) sets the worldwide level of employment-based immigrants at 140,000 plus an amount computed under paragraph (2), rather than 65,000. [S1] The State Department's 9 FAM also states that at least 140,000 employment-based immigrant visas are made available every fiscal year. [S7]"
+     },
+     {
+      "id": "ri05",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 201(c) (8 U.S.C. \u00a7 1151(c))",
+       "INA \u00a7 201(e) (8 U.S.C. \u00a7 1151(e))",
+       "INA \u00a7 203(a) (8 U.S.C. \u00a7 1153(a))"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.355479955673218,
+      "cost_usd": 0.10172,
+      "claim": "The worldwide level of family-sponsored immigrants is calculated starting from a figure of 480,000, reduced by certain other admissions.",
+      "summary": "INA \u00a7 201(c) states that the worldwide level of family-sponsored immigrants is based on 480,000 minus specified amounts, including certain prior admissions and parolees.",
+      "explanation": "INA \u00a7 201(c) states that the worldwide level of family-sponsored immigrants is based on 480,000 minus specified amounts, including certain prior admissions and parolees. [S1] The formula also allows an addition for a number computed under paragraph (3) and is subject to statutory exceptions, so the claim is a simplified description rather than the complete formula. [S1]"
+     },
+     {
+      "id": "ri06",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "8 CFR \u00a7 316.5(c)",
+       "8 CFR \u00a7 316.2(a)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 5.188142776489258,
+      "cost_usd": 0.10334,
+      "claim": "Naturalization generally requires five years of continuous residence after being lawfully admitted for permanent residence.",
+      "summary": "The general naturalization rule requires at least five years of continuous residence in the United States after lawful admission for permanent residence.",
+      "explanation": "The general naturalization rule requires at least five years of continuous residence in the United States after lawful admission for permanent residence. [S1] The regulation likewise states that an applicant must have resided continuously for at least five years after lawful admission for permanent residence, subject to exceptions. [S3]"
+     },
+     {
+      "id": "ri07",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "8 CFR \u00a7 316.5(b)",
+       "INA \u00a7 328(a) (8 U.S.C. \u00a7 1439(a))"
+      ],
+      "quote_fidelity": 0.667,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.8682591915130615,
+      "cost_usd": 0.10475,
+      "claim": "An applicant for naturalization must have been physically present in the United States for periods totaling at least half of the required residence period.",
+      "summary": "For the ordinary five-year naturalization period, the statute requires physical presence totaling at least half of that time.",
+      "explanation": "For the ordinary five-year naturalization period, the statute requires physical presence totaling at least half of that time. [S1] The same half-time requirement applies to the three-year residence period for certain applicants married to U.S. citizens, but an exception applies to some military applicants who may be naturalized without being physically present for any specified period. [S4] [S3]"
+     },
+     {
+      "id": "ri08",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "Title 8",
+      "cited_citations": [
+       "INA \u00a7 316(a) (8 U.S.C. \u00a7 1427(a))",
+       "8 CFR \u00a7 316.5(c)",
+       "8 CFR \u00a7 316.5(c)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.8097782135009766,
+      "cost_usd": 0.10615,
+      "claim": "Naturalization requires ten years of continuous residence as a lawful permanent resident.",
+      "summary": "The claim is contradicted because the general naturalization residence requirement is at least five years after lawful admission for permanent residence, not ten years.",
+      "explanation": "The claim is contradicted because the general naturalization residence requirement is at least five years after lawful admission for permanent residence, not ten years. [S1] Some applicants, including qualifying spouses of U.S. citizens, may qualify after three years of continuous residence. [S6]"
+     },
+     {
+      "id": "ri09",
+      "gold_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "gold_citation": "8 CFR",
+      "cited_citations": [
+       "8 CFR \u00a7 208.7(a)",
+       "INA \u00a7 208(d) (8 U.S.C. \u00a7 1158(d))",
+       "8 CFR \u00a7 274a.13(a)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.466651916503906,
+      "cost_usd": 0.10762,
+      "claim": "An asylum applicant who is not an aggravated felon may be eligible to request employment authorization.",
+      "summary": "The claim is supported because the regulation states that an asylum applicant who is not an aggravated felon is eligible to request employment authorization, subject to specified restrictions and conditions.",
+      "explanation": "The claim is supported because the regulation states that an asylum applicant who is not an aggravated felon is eligible to request employment authorization, subject to specified restrictions and conditions. [S1] The applicant is not automatically entitled to employment authorization, and authorization generally cannot be issued before 180 days after filing the asylum application. [S2]"
+     },
+     {
+      "id": "ri10",
+      "gold_verdict": "CONTRADICTED",
+      "predicted_verdict": "CONTRADICTED",
+      "gold_citation": "8 CFR",
+      "cited_citations": [
+       "8 CFR \u00a7 208.7(a)",
+       "INA \u00a7 208(d) (8 U.S.C. \u00a7 1158(d))",
+       "8 CFR \u00a7 274a.13(a)"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.422497034072876,
+      "cost_usd": 0.10874,
+      "claim": "Under the regulations, an asylum applicant who is an aggravated felon is eligible to request employment authorization.",
+      "summary": "The regulation states that an asylum applicant is eligible to request employment authorization only if the applicant is not an aggravated felon, so the claim reverses the regulation\u2019s stated condition.",
+      "explanation": "The regulation states that an asylum applicant is eligible to request employment authorization only if the applicant is not an aggravated felon, so the claim reverses the regulation\u2019s stated condition. [S1] The statute also provides that asylum applicants are not automatically entitled to employment authorization and that authorization may be provided under regulations. [S2]"
+     },
+     {
+      "id": "rn01",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "9 FAM 504.2",
+       "8 CFR \u00a7 1245.20(d)",
+       "9 FAM 504.2"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.966367244720459,
+      "cost_usd": 0.11043,
+      "claim": "The current USCIS processing time for Form I-130 at the Nebraska Service Center is four months.",
+      "summary": "The sources do not state that the current USCIS processing time for Form I-130 at the Nebraska Service Center is four months.",
+      "explanation": "The sources do not state that the current USCIS processing time for Form I-130 at the Nebraska Service Center is four months. [S3] Although the sources identify the Nebraska Service Center as a designated adjudicating office, they provide no current processing-time value. [S1]"
+     },
+     {
+      "id": "rn02",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "USCIS Policy Manual Vol. 7, Part G, Ch. 2",
+       "USCIS Policy Manual Vol. 2, Part I",
+       "USCIS Policy Manual Vol. 7, Part J, Ch. 5"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 4.144944906234741,
+      "cost_usd": 0.1117,
+      "claim": "In fiscal year 2024, USCIS received more than 700,000 naturalization applications.",
+      "summary": "None of the provided sources states how many naturalization applications USCIS received in fiscal year 2024.",
+      "explanation": "None of the provided sources states how many naturalization applications USCIS received in fiscal year 2024. [S6] The closest source requires reporting on naturalization cases adjudicated and applications pending, but it does not establish the claimed number received. [S6]"
+     },
+     {
+      "id": "rn03",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "8 U.S.C. \u00a7 1153a(e)",
+       "INA \u00a7 203(b)(5) (8 U.S.C. \u00a7 1153(b)(5))",
+       "90 FR 14845"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.349765777587891,
+      "cost_usd": 0.11331,
+      "claim": "The current Director of U.S. Citizenship and Immigration Services took office in 2025.",
+      "summary": "The sources refer to the position of Director of U.S.",
+      "explanation": "The sources refer to the position of Director of U.S. Citizenship and Immigration Services but do not identify the current officeholder or state when that person took office. [S1] Therefore, the claim that the current Director took office in 2025 is not resolved by these sources. [S1]"
+     },
+     {
+      "id": "rn04",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "9 FAM 402.2",
+       "INA \u00a7 202(a) (8 U.S.C. \u00a7 1152(a))",
+       "9 FAM 504.11"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.238758087158203,
+      "cost_usd": 0.11535,
+      "claim": "More than half of all U.S. immigrant visas issued in 2024 went to applicants from Asia.",
+      "summary": "The supplied sources discuss numerical limits for immigrant visas and employment-based visa availability, but they do not report the number of immigrant visas issued in 2024 or the share issued to applicants from Asia.",
+      "explanation": "The supplied sources discuss numerical limits for immigrant visas and employment-based visa availability, but they do not report the number of immigrant visas issued in 2024 or the share issued to applicants from Asia. [S2] [S7] Because the sources do not establish either part of the comparison required by the claim, the claim is NOT_ADDRESSED. [S2] [S7]"
+     },
+     {
+      "id": "rn05",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 17",
+       "IRS Publication 17"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 6.048174142837524,
+      "cost_usd": 0.11699,
+      "claim": "The average federal income tax refund issued during the 2025 filing season was about $3,100.",
+      "summary": "The supplied sources do not state an average federal income tax refund issued during the 2025 filing season.",
+      "explanation": "The supplied sources do not state an average federal income tax refund issued during the 2025 filing season. [S1] The source mentions an individual refund exceeding $50,000, but that does not establish or contradict a filing-season average of about $3,100. [S1]"
+     },
+     {
+      "id": "rn06",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "IRS Publication 519",
+       "IRS Publication 519",
+       "IRS Publication 519"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "GROUNDED",
+      "latency_s": 3.9138057231903076,
+      "cost_usd": 0.11844,
+      "claim": "Canada taxes its residents on their worldwide income.",
+      "summary": "The sources address U.S.",
+      "explanation": "The sources address U.S. taxation, stating that \u201cResident aliens are generally taxed on their worldwide income, the same as U.S. citizens.\u201d [S7] None of the provided sources states whether Canada taxes its residents on worldwide income. [S7]"
+     },
+     {
+      "id": "rn07",
+      "gold_verdict": "NOT_ADDRESSED",
+      "predicted_verdict": "NOT_ADDRESSED",
+      "gold_citation": "",
+      "cited_citations": [
+       "IRS Publication 17",
+       "IRS Publication 17",
+       "IRS Publication 17"
+      ],
+      "quote_fidelity": 1.0,
+      "grounding_grade": "PARTIAL",
+      "latency_s": 3.4581081867218018,
+      "cost_usd": 0.11989,
+      "claim": "The standard deduction for a single filer will increase for tax year 2030.",
+      "summary": "The sources establish a standard deduction amount for single filers for tax year 2025, but they do not state whether it will increase for tax year 2030.",
+      "explanation": "The sources establish a standard deduction amount for single filers for tax year 2025, but they do not state whether it will increase for tax year 2030. [S3] Therefore, the claim about 2030 cannot be determined from the provided sources. [S3]"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,6 +1,0 @@
-{
- "n_chunks": 14726,
- "dims": 384,
- "embed_model": "BAAI/bge-small-en-v1.5",
- "embed_provider": "local"
-}
