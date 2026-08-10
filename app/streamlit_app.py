@@ -160,6 +160,11 @@ def render_evaluation() -> None:
     if oai:
         st.divider()
         st.subheader("Same pipeline, frontier model", anchor=False)
+        st.caption(
+            "A one-off measurement, not a mode you can run here: the demo is local only. "
+            "Same corpus, same retrieval, same 73 claims, with only the generator swapped, "
+            "to test whether the accuracy gap is the small model or the pipeline."
+        )
         local = dec.get("full_no_decompose")
         f = oai[0]
         if local:
